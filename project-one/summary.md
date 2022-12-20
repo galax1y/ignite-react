@@ -75,7 +75,10 @@ Na raiz do projeto, temos um **`ìndex.html`** com um `<body>` contendo apenas d
 ```html
 <body>
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+  <script
+    type="module"
+    src="/src/main.jsx"
+  ></script>
 </body>
 ```
 
@@ -100,5 +103,90 @@ Em **`main.jsx`** temos:
 Esse conteúdo é muito semelhante a tags **`HTML`**, mas são componentes do **`React`**, e um deles é **`<App />`**, o nosso arquivo **`App.jsx`**, que está sendo importado e contém somente um **`<h1>Hello World!</h1>`** sendo retornado.
 
 Nota-se que **`index.html`** não tem nada no seu interior. A capacidade de criação e manipulação de elementos está totalmente na mão do **`React`**, ou seja, na mão do **`JavaScript`** a ser criado nesse projeto, então sem JS não temos interface.
+
+---
+
+## `Componentes React`
+
+Um componente pode ser entendido como um pedaço menor da aplicação que pode ser reutilizada.
+
+Um **`componente React`** é uma função que retorna `HTML`, e tem como extensão **`.jsx`** que vem de `JavaScript + XML <=> JSX`.
+
+O **`retorno de um componente React deve ser UM elemento HTML`**, que pode ter vários outros dentro, mas devidamente embrulhado, como um 'pacote' fechado.
+
+```jsx
+export function App() {
+  return (
+    <div>
+      <p>Something</p>
+      <p>Somethingelse</p>
+      <p>Somethingother</p>
+      <p>Somethingbutnotthat</p>
+    </div>
+  );
+}
+```
+
+Seguindo na mesma ideia, **`componentes podem importar outros componentes`**, assim permitindo reaproveitamento de código em vários níveis.
+
+ex.:
+
+```jsx
+export function Post() {
+  return <p>Post</p>;
+}
+```
+
+```jsx
+import { Post } from "./Post";
+
+export function App() {
+  return (
+    <div>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </div>
+  );
+}
+```
+
+---
+
+## `Propriedades React`
+
+Propriedades são informações que podemos passar pra componentes.
+
+É possível passar para **`componentes React`**, da mesma forma que passamos atributos para tags HTML, informações que o componente possa precisar, essas são as **`Propriedades React`**.
+
+```jsx
+export function App() {
+  return (
+    <div>
+      <Post
+        author="Lucas Galax1y"
+        content="Why should there be content?"
+      />
+    </div>
+  );
+}
+```
+
+As propriedades vão ficar armazenadas como objeto em uma variável chamada **`props`** no **`componente React`** em que foram passadas.
+
+E elas podem ser acessadas dessa forma.:
+
+```jsx
+// props: {author: "Lucas Galax1y", content: "Why should there be content?"}
+
+export function Post(props) {
+  return (
+    <p>
+      {props.author} once said "{props.content}"
+    </p>
+  );
+}
+```
 
 ---

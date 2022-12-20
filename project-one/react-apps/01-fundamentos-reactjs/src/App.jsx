@@ -1,5 +1,16 @@
-function App() {
-  return <h1>Hello World!</h1>;
-}
+import { Post } from "./Post";
 
-export default App;
+export function App() {
+  return (
+    <div>
+      <Post
+        author="Lucas Galax1y"
+        content="Why should there be content?"
+      />
+      <Post
+        author="Shakespeare"
+        content="To be or not to be, or not to be, or not to be, or not to be, or not to be"
+      />
+    </div>
+  );
+}
