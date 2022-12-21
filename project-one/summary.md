@@ -325,14 +325,90 @@ Pixels are almost never used (by me). They can be useful when things should not 
 
 Nessa altura, a Sidebar tava pronta e eu tentei criar o componente `<Post />` por mim mesmo e postei o resultado na branch `attempt-post`, o README.md desse branch tem tudo resumido.
 
----
-
 O roteiro para o desenvolvimento das páginas é:
 
 1. HTML - Estrutura da página já deve estar relativamente pensada, atribuir classNames
 2. CSS - Estilização
 3. React - Responsividade
 
+Quando alguma coisa repete muito em tela, provavelmente isso deveria virar um `Componente React`, é o caso das imagens na página do Ignite Feed. Então foi criado um componente `<Avatar />`
+
 ---
 
-Quando alguma coisa repete muito em tela, provavelmente isso deveria virar um `Componente React`
+## `Usando Propriedades React como condição para estilização`
+
+Podemos criar Propriedades React livremente quando usamos os componentes, tornando muito fácil enviar flags pra dentro das suas implementações. E lá dentro avaliamos a informação facilmente, afinal, é JavaScript.
+
+Instanciando o componente e enviando flag pela propriedade:
+
+```html
+<Avatar
+  hasBorder="{false}"
+  src="https://github.com/galax1y.png"
+/>
+```
+
+Recebendo as informações no componente e processando:
+
+```jsx
+export function Avatar(props) {
+  return (
+    <img
+      className={props.hasBorder ? styles.avatar : styles.avatarBorderless}
+      src={src}
+    />
+  );
+}
+```
+
+De outra maneira, melhor, com valor padrão e desempacotando:
+
+```jsx
+export function Avatar({ hasBorder = true, src }) {
+  return (
+    <img
+      className={hasBorder ? styles.avatar : styles.avatarBorderless}
+      src={src}
+    />
+  );
+}
+```
+
+Essa maneira é melhor, o valor padrão para `hasBorder` é `true`, então só é necessário mandar a flag quando for necessário passar `false` para a propriedade. Também, é um código mais legível, sem chaining.
+
+---
+
+## `Tornando a aplicação mais responsiva`
+
+A estrutura dessa página é estilizada da seguinte forma:
+
+```css
+.wrapper {
+  max-width: 70rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: 256px 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+```
+
+Não é muito responsiva para dispositivos com tela menor, porque é travado em duas colunas, sendo que uma delas tem 256px fixos e como a gente tem visto, unidades relativas são muito melhores.
+
+Podemos adicionar um comando que muda essa estrutura de acordo com o tamanho da tela que está acessando.
+
+```css
+@media (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+Essa é uma solução simples com `media queries` que torna a página em uma coluna dependendo da largura máxima da tela, então a `Sidebar` vai se posicionar no topo, e então vem os componentes `Post`
+
+![Tela responsiva](../assets/responsive.png)
+
+---

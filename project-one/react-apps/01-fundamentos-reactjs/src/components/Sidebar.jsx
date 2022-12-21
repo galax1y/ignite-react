@@ -1,5 +1,6 @@
 import styles from "./Sidebar.module.css";
 import { PencilLine } from "phosphor-react";
+import { Avatar } from "./Avatar";
 
 export function Sidebar() {
   return (
@@ -10,11 +11,7 @@ export function Sidebar() {
       />
 
       <div className={styles.profile}>
-        <img
-          className={styles.avatar}
-          src="https://avatars.githubusercontent.com/u/50991688?v=4l"
-          alt="Profile Image"
-        />
+        <Avatar src="https://avatars.githubusercontent.com/u/50991688?v=4l" />
         <strong>Lucas Galax1y</strong>
         <span>Full Stack Developer</span>
       </div>

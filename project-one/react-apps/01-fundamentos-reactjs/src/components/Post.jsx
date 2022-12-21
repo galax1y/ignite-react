@@ -1,16 +1,13 @@
+import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
-// prettier-ignore
 export function Post(props) {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
-            className={styles.avatar}
-            src="https://github.com/galax1y.png"
-          />
+          <Avatar src="https://github.com/galax1y.png" />
           <div className={styles.authorInfo}>
             <strong>Lucas Galax1y</strong>
             <span>Full Stack Developer</span>
@@ -55,7 +52,6 @@ export function Post(props) {
         <Comment />
         <Comment />
       </div>
-
     </article>
   );
 }
