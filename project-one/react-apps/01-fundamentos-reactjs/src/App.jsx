@@ -5,6 +5,46 @@ import { Post } from "./components/Post";
 import styles from "./App.module.css";
 import "./global.css";
 
+export const posts = [
+  {
+    id: 1,
+    author: {
+      name: "Lucas Galax1y",
+      role: "Full Stack Developer",
+      avatarUrl: "https://github.com/galax1y.png",
+    },
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-12-09 19:00:00"),
+  },
+
+  {
+    id: 2,
+    author: {
+      name: "Diego Fernandes",
+      role: "CTO @ Rocketseat",
+      avatarUrl: "https://github.com/diego3g.png",
+    },
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-12-20 21:00:00"),
+  },
+];
+
 export function App() {
   return (
     <div>
@@ -13,14 +53,15 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author="Lucas Galax1y"
-            content="Why should there be content?"
-          />
-          <Post
-            author="Shakespeare"
-            content="To be or not to be, or not to be, or not to be, or not to be, or not to be"
-          />
+          {posts.map((post) => {
+            return (
+              <Post
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
         </main>
       </div>
     </div>
