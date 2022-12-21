@@ -332,3 +332,7 @@ O roteiro para o desenvolvimento das páginas é:
 1. HTML - Estrutura da página já deve estar relativamente pensada, atribuir classNames
 2. CSS - Estilização
 3. React - Responsividade
+
+---
+
+Quando alguma coisa repete muito em tela, provavelmente isso deveria virar um `Componente React`
