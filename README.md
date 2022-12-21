@@ -1,15 +1,19 @@
-# `Trilha Ignite React 2022`
+### `Tentativa de clonar o layout antes de ver o gabarito na videoaula`
 
-A trilha é dividida em `5 projetos`, totalizando `aproximadamente 26 horas de conteúdo em vídeo`, sem contar a codificação dos desafios, quiz, vídeos reassistidos, pesquisas separadas, etc.
+A tentativa foi feita imediatamente depois de terminar a Sidebar, só tem o banner e o quadrado de perfil à esquerda nesse instante, inclusive, ele falou que não precisa escrever o `Ignite Feed` no banner.
 
-- **`Projeto 1 - Fundamentos do ReactJS`**
-- **`Projeto 2 - Criando SPAs com ReactJS`**
-- **`Projeto 3 - Consumo de API e performance no ReactJS`**
-- **`Projeto 4 - Fundamentos do Next.js`**
-- **`Projeto 5 - Design System`**
-
-Ao longo da jornada, desafios serão disponibilizados. Devem ser codados e enviados para avaliação, para receber a certificação precisa tirar uma certa nota nos desafios.
+Referência no Figma
+<img src="assets/referencia.png" alt="Referencia" width=" 900px">
 
 ---
 
-# **`NWSM. 🛫 GO!! 🌌`**
+Resultado
+<img src="assets/resultado.png" alt="Resultado" width=" 900px">
+
+Ele ainda vai mostrar mais tecnologias no desenrolar dessa página. Acredito que tá bom, tem inclusive os efeitos de hover indicados.
+
+Acho que poderia ter feito a parte do HTML melhor, e como consequência a organização da estilização melhoraria também.
+
+A propriedade do HR também tá um pouco diferente do que é pra ser, mas enfim, não vou resolver isso.
+
+Tá tocando Britney Spears Toxic agora.
