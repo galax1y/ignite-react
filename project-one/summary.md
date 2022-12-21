@@ -322,3 +322,13 @@ Pixels are almost never used (by me). They can be useful when things should not 
 ```
 
 ---
+
+Nessa altura, a Sidebar tava pronta e eu tentei criar o componente `<Post />` por mim mesmo e postei o resultado na branch `attempt-post`, o README.md desse branch tem tudo resumido.
+
+---
+
+O roteiro para o desenvolvimento das páginas é:
+
+1. HTML - Estrutura da página já deve estar relativamente pensada, atribuir classNames
+2. CSS - Estilização
+3. React - Responsividade
