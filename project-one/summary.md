@@ -190,3 +190,135 @@ export function Post(props) {
 ```
 
 ---
+
+## `CSS Modules`
+
+Estilização de um projeto React não é feita pelo **`index.html`**.
+
+Todas as importações são feitas pelos arquivos **`.jsx`**, ex.:
+
+Em **`App.jsx`** fazemos **`import './styles.css'`** e a estilização já será aplicada.
+
+Um detalhe é que estamos, na prática, trabalhando com `JavaScript`, e dependendo do escopo onde o arquivo `CSS` é importado, o acesso à estilização é restrito a alguns componentes. Isso se chama **`Scoped CSS`**
+
+Contrastando com o funcionamento normal do `CSS`, onde temos um escopo global e a necessidade de tomar cuidado com os nomes e possíveis efeitos indesejados quando estilizando múltiplos elementos com o mesmo seletor, a separação da estilização em componentes, como propõe o **`CSS Modules`** resolve esse problema.
+
+Os estilos de um componente no padrão **`CSS Modules`**
+
+1. Vivem em um único lugar
+2. Só se aplicam àquele componente e nenhum outro
+
+Então vamos criar um componente **`<Header />`** e sua estilização seguindo o padrão mostrado no Figma e ainda melhorar a organização com uma pasta `components`.
+
+![Criando componente Header](../assets/create-header-component.png)
+
+Componentes React devem ter a primeira letra maiúscula para não confundir com elementos HTML como `<header>`.
+
+O **`<Header />`** por enquanto só vai conter um texto e estilização simples:
+
+**`Header.module.css`**
+
+```css
+.header {
+  background-color: #333;
+  height: 80px;
+}
+```
+
+Aqui foi usado um seletor de classe para criar a estilização.
+
+**`Header.jsx`**
+
+```jsx
+import styles from "./Header.module.css";
+
+export function Header() {
+  return (
+    <header className={styles.header}>
+      <strong>Ignite Feed</strong>
+    </header>
+  );
+}
+```
+
+E para aplicar a classe no arquivo `.jsx` é um pouco diferente, já que estamos em `JavaScript` e a palavra `class` é reservada, então usa-se **`className`**
+
+E como estamos em `JavaScript`, e não `CSS`, `className="header"` não funciona.
+
+Pegando a importação do `CSS` e colocando um nome, ex.: `styles`, temos a estilização como um objeto, e agora podemos fazer **`className={ styles.header }`**, assim a estilização é aplicada.
+
+Agora só falta entrar em `main.jsx`, importar o componente e usá-lo.
+
+```jsx
+...
+import { Header } from "./components/Header";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <Header />
+    <App />
+  </React.StrictMode>
+);
+```
+
+Ok, assim que se usa **`Scoped CSS`** no **`React`**. Agora veremos as estilizações globais - **`Global CSS`** pra setar fonte padrão, plano de fundo, cor padrão de texto, etc.
+
+Criando um arquivo `global.css` e aplicando em `App.jsx` :
+
+```jsx
+...
+import "./global.css";
+
+export function App() {
+  ...
+}
+```
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+...
+```
+
+Imagens também devem ser importadas no "modo JavaScript", então se fossemos adicionar um logo, teríamos em um `componente React`:
+
+```jsx
+import logo from "../assets/logo.svg";
+
+export function genericComponent() {
+  return (
+    <div>
+      <img src={logo} />
+    </div>
+  );
+}
+```
+
+É importante quando a gente tá desenvolvendo uma aplicação front-end, que o dimensionamento dos componentes seja feito em valores relativos como `rem`.
+
+Usuários no Reddit comentam:
+
+```
+px for large and very small things (under 4px).
+
+rem for padding, margin, font size, and things like that.
+It's relative to the font size on the page and scales well when users scale their font sizes.
+You can use it for large things too, it just becomes a hassle when using it for
+image sizes, widths, or breakpoints.
+```
+
+```
+px for small things.
+
+rem for dynamic styles where you want things to be changed according to the font-size
+```
+
+```
+Pixels are almost never used (by me). They can be useful when things should not be relative, which is rare.
+```
+
+---
