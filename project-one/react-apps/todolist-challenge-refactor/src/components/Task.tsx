@@ -1,13 +1,18 @@
 import { Trash } from "phosphor-react";
 import styles from "./Task.module.css";
 
-interface TaskProps {
+export interface TaskProps {
   id: string;
   content: string;
   isDone: boolean;
+  onDelete: (id: string) => void;
 }
 
-export function Task({ id, content, isDone }: TaskProps) {
+export function Task({ id, content, isDone, onDelete }: TaskProps) {
+  function handleDeleteTask() {
+    onDelete(id);
+  }
+
   return (
     <div className={styles.taskContent}>
       <div>
@@ -15,7 +20,7 @@ export function Task({ id, content, isDone }: TaskProps) {
         <p>{content}</p>
       </div>
 
-      <button>
+      <button onClick={handleDeleteTask}>
         <Trash
           size={16}
           weight={"bold"}

@@ -1,37 +1,76 @@
 import { PlusCircle } from "phosphor-react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { EmptyNotification } from "./EmptyNotification";
-import { Task } from "./Task";
+import { Task, TaskProps } from "./Task";
 import styles from "./TaskManager.module.css";
 
-const tasks = [
-  {
-    id: uuid(),
-    content: "Test task no 1",
-    isDone: false,
-  },
-  {
-    id: uuid(),
-    content: "Test task no 2",
-    isDone: false,
-  },
-];
-
 export function TaskManager() {
+  // testes
+  const testTasks = [
+    {
+      id: uuid(),
+      content: "Test task no 1",
+      isDone: false,
+      onDelete: deleteTask,
+    },
+    {
+      id: uuid(),
+      content: "Test task no 2",
+      isDone: false,
+      onDelete: deleteTask,
+    },
+  ];
+
+  // estados
+  // const [state, setState] = useState<type>(initial-value)
+  const [tasks, setTasks] = useState<TaskProps[]>([...testTasks]);
+  const [inputText, setInputText] = useState("");
+
+  // handlers
+  function handleNewInputText(event: ChangeEvent<HTMLInputElement>): void {
+    setInputText(event.target.value);
+  }
+
+  function handleSubmitTask(e: FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+
+    const newTask: TaskProps = {
+      id: uuid(),
+      content: inputText,
+      isDone: false,
+      onDelete: deleteTask,
+    };
+
+    setTasks([...tasks, newTask]);
+  }
+
+  function deleteTask(taskIdToDelete: string): void {
+    const tasksFilteredById: TaskProps[] = tasks.filter((task) => {
+      return task.id !== taskIdToDelete;
+    });
+
+    setTasks(tasksFilteredById);
+  }
+
   return (
     <main className={styles.container}>
       <header className={styles.taskMaker}>
-        <input
-          type="text"
-          placeholder="Adicione uma nova tarefa"
-        />
-        <button>
-          Criar{" "}
-          <PlusCircle
-            size={16}
-            weight={"bold"}
+        <form onSubmit={handleSubmitTask}>
+          <input
+            type="text"
+            placeholder="Adicione uma nova tarefa"
+            value={inputText}
+            onChange={handleNewInputText}
           />
-        </button>
+          <button type="submit">
+            Criar
+            <PlusCircle
+              size={16}
+              weight={"bold"}
+            />
+          </button>
+        </form>
       </header>
 
       <div className={styles.taskList}>
@@ -50,19 +89,22 @@ export function TaskManager() {
             // se não tiver tasks, retorna um <EmptyNotification />
             // se uma task for criada e não tiver tasks, monta cada <Task />
             // se uma task for criada e tiver tasks, monta a <Task />
+            tasks.length > 0 ? (
+              tasks.map((task: TaskProps) => {
+                return (
+                  <Task
+                    key={task.id}
+                    id={task.id}
+                    content={task.content}
+                    isDone={task.isDone}
+                    onDelete={deleteTask}
+                  />
+                );
+              })
+            ) : (
+              <EmptyNotification />
+            )
           }
-          <Task
-            key={tasks[0].id}
-            id={tasks[0].id}
-            content={tasks[0].content}
-            isDone={tasks[0].isDone}
-          />
-          <Task
-            key={tasks[1].id}
-            id={tasks[1].id}
-            content={tasks[1].content}
-            isDone={tasks[1].isDone}
-          />
         </section>
       </div>
     </main>

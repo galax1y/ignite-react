@@ -4,7 +4,7 @@
   margin-top: -2.75rem;
 }
 
-.taskMaker {
+.taskMaker form {
   display: flex;
   gap: 0.5rem;
 }
