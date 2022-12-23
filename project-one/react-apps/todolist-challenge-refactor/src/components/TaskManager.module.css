@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: -2.75rem;
+}
+
+.taskMaker {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.taskMaker input {
+  flex: 1;
+
+  height: 3.25rem;
+  padding: 1rem;
+
+  font-size: 1rem;
+
+  background: var(--gray-500);
+
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+
+  outline: none;
+  color: var(--gray-100);
+}
+
+.taskMaker input:focus {
+  border: 1px solid var(--purple-dark);
+}
+
+.taskMaker button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 1rem;
+  background: var(--blue-dark);
+
+  color: var(--gray-100);
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  line-height: 0;
+}
+
+.taskMaker button:hover {
+  background: var(--blue);
+}
+
+.taskListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 4rem;
+}
+
+.taskListHeader p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.taskListHeader p:first-child {
+  color: var(--blue);
+}
+
+.taskListHeader p:last-child {
+  color: var(--purple);
+}
+
+.taskListHeader p span {
+  color: var(--gray-200);
+
+  background: var(--gray-400);
+
+  padding: 2px 8px;
+  border-radius: 999px;
+
+  line-height: normal;
+}
+
+.taskListBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}

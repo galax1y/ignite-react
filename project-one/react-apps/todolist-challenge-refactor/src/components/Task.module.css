@@ -1,0 +1,42 @@
+.taskContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  background: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 1rem;
+
+  min-height: 4.5rem;
+}
+
+.taskContent > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.taskContent input {
+  justify-content: flex-start;
+}
+
+.taskContent p {
+  color: var(--gray-100);
+}
+
+.taskContent button {
+  padding: 0.375rem;
+  line-height: 0;
+
+  background: none;
+  border: none;
+  border-radius: 4px;
+
+  color: var(--gray-300);
+  cursor: pointer;
+}
+
+.taskContent button:hover {
+  color: var(--red-danger);
+  background: var(--gray-400);
+}
