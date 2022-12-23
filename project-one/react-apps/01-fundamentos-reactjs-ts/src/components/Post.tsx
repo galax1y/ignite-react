@@ -19,7 +19,7 @@ interface PostProps {
 }
 
 interface ContentLine {
-  type: "paragraph" | "link";
+  type: string;
   content: string;
 }
 
