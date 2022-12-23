@@ -13,19 +13,30 @@ export function TaskManager() {
       content: "Test task no 1",
       isDone: false,
       onDelete: deleteTask,
+      onCheckboxChange: handleCheckboxChange,
     },
     {
       id: uuid(),
       content: "Test task no 2",
-      isDone: false,
+      isDone: true,
       onDelete: deleteTask,
+      onCheckboxChange: handleCheckboxChange,
     },
   ];
 
-  // estados
-  // const [state, setState] = useState<type>(initial-value)
+  const tasksDone = testTasks.filter((task) => {
+    if (task.isDone) return task;
+  });
+
+  console.log(`startingTasksDoneLength is ${tasksDone.length}`);
+
+  // estados -> sintaxe: const [state, setState] = useState<type>(initial-value)
   const [tasks, setTasks] = useState<TaskProps[]>([...testTasks]);
   const [inputText, setInputText] = useState("");
+
+  const [tasksDoneCount, setTasksDoneCount] = useState<number>(
+    tasksDone.length
+  );
 
   // handlers
   function handleNewInputText(event: ChangeEvent<HTMLInputElement>): void {
@@ -40,9 +51,30 @@ export function TaskManager() {
       content: inputText,
       isDone: false,
       onDelete: deleteTask,
+      onCheckboxChange: handleCheckboxChange,
     };
 
     setTasks([...tasks, newTask]);
+    updateTasksDoneCount();
+  }
+
+  function handleCheckboxChange(taskId: string): void {
+    // quando uma checkbox é marcada, preciso que o estado da task seja renovado, com o estado da checkbox novo
+    const tasksWithUpdatedCheckbox = tasks.map((task) => {
+      if (task.id === taskId) task.isDone = !task.isDone;
+      return task;
+    });
+
+    setTasks(tasksWithUpdatedCheckbox);
+    updateTasksDoneCount(tasksWithUpdatedCheckbox);
+  }
+
+  function updateTasksDoneCount(taskChanged?: TaskProps[]): void {
+    let doneTasks: TaskProps[];
+    if (taskChanged) doneTasks = taskChanged.filter((task) => task.isDone);
+    else doneTasks = tasks.filter((task) => task.isDone);
+
+    setTasksDoneCount(doneTasks.length);
   }
 
   function deleteTask(taskIdToDelete: string): void {
@@ -51,6 +83,7 @@ export function TaskManager() {
     });
 
     setTasks(tasksFilteredById);
+    updateTasksDoneCount(tasksFilteredById);
   }
 
   return (
@@ -76,34 +109,33 @@ export function TaskManager() {
       <div className={styles.taskList}>
         <section className={styles.taskListHeader}>
           <p>
-            Tarefas Criadas<span>0</span>
+            Tarefas Criadas<span>{tasks.length}</span>
           </p>
           <p>
-            Concluídas<span>0 de 5</span>
+            Concluídas
+            <span>
+              {tasksDoneCount} de {tasks.length}
+            </span>
           </p>
         </section>
 
         <section className={styles.taskListBody}>
           {
-            // se map tiver tasks, monta cada <Task />
-            // se não tiver tasks, retorna um <EmptyNotification />
-            // se uma task for criada e não tiver tasks, monta cada <Task />
-            // se uma task for criada e tiver tasks, monta a <Task />
-            tasks.length > 0 ? (
-              tasks.map((task: TaskProps) => {
-                return (
-                  <Task
-                    key={task.id}
-                    id={task.id}
-                    content={task.content}
-                    isDone={task.isDone}
-                    onDelete={deleteTask}
-                  />
-                );
-              })
-            ) : (
-              <EmptyNotification />
-            )
+            //prettier-ignore
+            tasks.length > 0 ?
+              tasks.map((task: TaskProps) => 
+                { return (
+                    <Task
+                      key={task.id}
+                      id={task.id}
+                      content={task.content}
+                      isDone={task.isDone}
+                      onDelete={deleteTask}
+                      onCheckboxChange={handleCheckboxChange}
+                    />
+                  );
+                })
+            : <EmptyNotification />
           }
         </section>
       </div>

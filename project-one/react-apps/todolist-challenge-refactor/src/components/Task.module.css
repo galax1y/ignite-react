@@ -22,6 +22,12 @@
 
 .taskContent p {
   color: var(--gray-100);
+  transition: color 0.4s ease-in-out;
+}
+
+.taskContent input:checked + p {
+  color: var(--gray-300);
+  text-decoration: line-through;
 }
 
 .taskContent button {
