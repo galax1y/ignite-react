@@ -18,6 +18,33 @@
 
 .taskContent input {
   justify-content: flex-start;
+  appearance: none;
+  margin: auto 0;
+
+  border: 2px solid var(--blue);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.taskContent input:hover {
+  background: var(--blue-dark);
+}
+
+.taskContent input:checked {
+  border: 2px solid var(--purple-dark-inverse);
+  background: url(../assets/check-circle-bold.svg), var(--purple-dark-inverse);
+  filter: invert(100%);
+  background-position: center;
+  background-size: 1.5rem;
+}
+
+.taskContent input:checked:hover {
+  border: 2px solid var(--purple-inverse);
+  background: url(../assets/check-circle-bold.svg), var(--purple-inverse);
+  filter: invert(100%);
+  background-position: center;
+  background-size: 1.5rem;
 }
 
 .taskContent p {

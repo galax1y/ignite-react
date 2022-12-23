@@ -1,3 +1,12 @@
+@media (max-width: 400px) {
+  .container {
+    font-size: 0.8rem;
+    transition: all 1s ease-in-out;
+    position: relative;
+    top: 5rem;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;

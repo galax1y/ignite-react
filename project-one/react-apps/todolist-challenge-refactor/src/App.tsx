@@ -8,7 +8,9 @@ import { TaskManager } from "./components/TaskManager";
 function App() {
   return (
     <div>
-      <Header />
+      <div>
+        <Header />
+      </div>
       <div className={styles.wrapper}>
         <TaskManager />
       </div>

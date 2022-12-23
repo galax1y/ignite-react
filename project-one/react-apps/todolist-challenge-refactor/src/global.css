@@ -4,6 +4,9 @@
   --blue: #4ea8de;
   --blue-dark: #1e6f9f;
 
+  --purple-inverse: #7d7b05;
+  --purple-dark-inverse: #a19f31;
+
   --gray-700: #0d0d0d;
   --gray-600: #1a1a1a;
   --gray-500: #262626;
@@ -19,11 +22,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-  line-height: 1.4;
 }
 
 body {
   background-color: var(--gray-600);
   -webkit-font-smoothing: antialiased;
+  font-family: "Inter", sans-serif;
+  line-height: 1.4;
 }

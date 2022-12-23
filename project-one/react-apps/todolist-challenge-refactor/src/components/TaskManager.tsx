@@ -28,8 +28,6 @@ export function TaskManager() {
     if (task.isDone) return task;
   });
 
-  console.log(`startingTasksDoneLength is ${tasksDone.length}`);
-
   // estados -> sintaxe: const [state, setState] = useState<type>(initial-value)
   const [tasks, setTasks] = useState<TaskProps[]>([...testTasks]);
   const [inputText, setInputText] = useState("");
@@ -53,7 +51,7 @@ export function TaskManager() {
       onDelete: deleteTask,
       onCheckboxChange: handleCheckboxChange,
     };
-
+    setInputText("");
     setTasks([...tasks, newTask]);
     updateTasksDoneCount();
   }
@@ -95,6 +93,7 @@ export function TaskManager() {
             placeholder="Adicione uma nova tarefa"
             value={inputText}
             onChange={handleNewInputText}
+            required
           />
           <button type="submit">
             Criar
