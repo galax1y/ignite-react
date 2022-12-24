@@ -11,6 +11,10 @@
   min-height: 4.5rem;
 }
 
+div.taskContent:has(input[type="checkbox"]:checked) {
+  border: 1px solid var(--gray-500);
+}
+
 .taskContent > div {
   display: flex;
   gap: 0.5rem;
