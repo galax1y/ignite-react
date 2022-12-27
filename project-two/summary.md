@@ -25,12 +25,12 @@ Exemplo na pasta `ignite-react/project-two/exemplo-styled-components/`
 No caso do `styled-components`, vamos sobrescrever o tipo de `ThemeType`. Isso se faz uma vez por projeto, então não precisa decorar, só consultar um projeto.
 
 ```ts
-import "styled-components";
-import { defaultTheme } from "../styles/themes/default/default";
+import 'styled-components'
+import { defaultTheme } from '../styles/themes/default/default'
 
-type ThemeType = typeof defaultTheme;
+type ThemeType = typeof defaultTheme
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface DefaultTheme extends ThemeType {}
 }
 ```
@@ -44,7 +44,7 @@ declare module "styled-components" {
 2. Codar o estilo seguindo esse padrão
 
 ```ts
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -57,20 +57,38 @@ body {
     background: #333;
     color: #fff;
 }
-`;
+`
 ```
 
 3. Inserir o arquivo de estilização
 
 ```tsx
 <ThemeProvider theme={defaultTheme}>
-  <Button variant={"primary"} />
-  <Button variant={"secondary"} />
-  <Button variant={"success"} />
-  <Button variant={"danger"} />
+  <Button variant={'primary'} />
+  <Button variant={'secondary'} />
+  <Button variant={'success'} />
+  <Button variant={'danger'} />
 
   <GlobalStyle />
 </ThemeProvider>
 ```
 
 Pode ser colocar em qualquer lugar
+
+---
+
+## `Formulários no React`
+
+Controlled -> toda vez que o usuário atualizar o input, o estado é atualizado em tempo real.
+Um downside a se levar em consideração é que atualizações de estado causam que o React renderize novamente componentes, podendo causar perda de performance.
+
+Uncontrolled -> busca a informação do valor do input somente quando ela for necessária.
+Esse approach pode fazer perder um pouco a fluidez de interação com o usuário, já que no meio da digitação, por exemplo, não poderemos ligar/desligar algum efeito visual.
+
+#### Biblioteca de formulários `React Hook Form`
+
+```
+const { register, handleSubmit, watch, reset } = useForm({})
+```
+
+`{...register('task')}`
