@@ -77,7 +77,7 @@ Pode ser colocar em qualquer lugar
 
 ---
 
-## `Formulários no React`
+### `Formulários no React`
 
 Controlled -> toda vez que o usuário atualizar o input, o estado é atualizado em tempo real.
 Um downside a se levar em consideração é que atualizações de estado causam que o React renderize novamente componentes, podendo causar perda de performance.
@@ -92,3 +92,29 @@ const { register, handleSubmit, watch, reset } = useForm({})
 ```
 
 `{...register('task')}`
+
+---
+
+### Hook `useEffect`
+
+Hooks são funções que começam com o prefixo `use`, tem como intenção acoplar funcionamento a algum componente da nossa aplicação.
+
+`useState` é um hook que armazena variáveis que quando são alteradas provocam uma nova renderização dos componentes.
+
+`useEffect` é um hook que aplica um 'efeito' (função) caso a variável assistida mude (quando).
+
+`useEffect( function , [variables-to-monitor] )`
+
+Executa também, por padrão, quando um componente é exibido em tela pela primeira vez.
+
+Quando queremos executar só essa primeira vez, fazemos:
+
+```jsx
+useEffect(() => {
+  doSomething()
+}, [])
+```
+
+Pode ser útil para fazer chamadas para uma API.
+
+Cuidado ao usar `useState` para mudar valor de estados, existe risco de renderizar novamente sem necessidade.
