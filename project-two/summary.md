@@ -167,3 +167,59 @@ export function Home() {
   )
 }
 ```
+
+3. Receber o contexto no componente e usá-lo
+
+```tsx
+function export ChildComponent() {
+  const {
+    // elementos do contexto que o componente precisa
+  } = useContext(MyContext)
+}
+```
+
+---
+
+## `Reducers`
+
+Componentes com muitos estados também contém muitas funções que atualizam esses estados e isso faz um código ser difícil de ler.
+
+Um `reducer` é uma opção para centralizar todos os estados de um contexto e sua lógica (funções) em um único local.
+
+```jsx
+
+interface CyclesState {
+  cycles: Cycle[]
+  activeCycleId: string | null
+}
+//     objeto com os estados     função      useReducer   //estado anterior   // parametros dispatch       -   init estados
+const [cyclesState: CyclesState, dispatch] = useReducer( (state: CyclesState, action) => {/* implementação*/}, {cycles: [], activeCycleId: null} )
+```
+
+Substitui-se a lógica de mudança de estados em cada função por um `dispatch` que se encarrega de tratar dessas mudanças.
+
+```jsx
+dispatch({
+  type: 'INTERRUPT_CURRENT_CYCLE',
+  payload: {
+    activeCycleId,
+  },
+})
+```
+
+Basicamente todos os locais onde o estado está sendo modificado são passados pra dentro do reducer e tratados lá.
+
+```jsx
+switch (action.type) {
+  case 'ADD_NEW_CYCLE':
+    return {
+      ...state,
+      cycles: [...state.cycles, action.payload.newCycle],
+      activeCycleId: action.payload.newCycle.id,
+    }
+    case 'INTERRUPT_CURRENT_CYCLE':
+      ...
+}
+```
+
+Creio que o `reducer` deve ser enxergado como um design pattern.
