@@ -118,3 +118,52 @@ useEffect(() => {
 Pode ser útil para fazer chamadas para uma API.
 
 Cuidado ao usar `useState` para mudar valor de estados, existe risco de renderizar novamente sem necessidade.
+
+---
+
+## `Componentização`
+
+Existem dois motivos principais pra fazer componentização:
+
+1. Percebemos que algo é um componente, se repete, logo, separamos.
+
+2. Um componente está muito grande e difícil de entender, então separamos em componentes menores que consideramos independentes.
+
+Um problema surge na segunda ocasião: os useEffect, useState, funções, interfaces, etc. criados no 'componente pai' não estão mais disponíveis nos componentes separados, e na verdade, **precisam ficar** no componente de origem, pois mais de um dos 'componentes-filhos' precisam usá-lo.
+
+Com o que sabemos até agora, o recurso que temos pra resolver isso são as `Propriedades React`.
+
+Funcionar funciona, mas o que resulta em um projeto grande é uma lista GIGANTE de propriedades contendo estados/funções/effects/variáveis que estão sendo passadas em cada um dos componentes, e isso não simplifica o código como é a intenção da componentização. Pior ainda se o componente-destino estiver aninhado mais de um nível, gerando uma cadeia imensa de passagem de propriedades, é um caos.
+
+#### Isso se chama **`Prop Drilling`**.
+
+### Context API
+
+A `Context API` permite compartilharmos informação entre vários componentes ao mesmo tempo (como se fossem variáveis globais).
+
+Como usar?
+
+1. Criar o contexto
+
+```tsx
+import { createContext } from 'react'
+
+export const MyContext = createContext({
+  // elementos a serem compartilhados
+})
+```
+
+2. Inserir o `Context Provider` no componente pai com os elementos a serem compartilhados
+
+```tsx
+export function Home() {
+  const [element, setElement] = useState(0)
+
+  return (
+    <MyContext.Provider value={{ element, setElement }}>
+      <ChildComponent />
+      <AnotherChildComponent />
+    </MyContext.Provider>
+  )
+}
+```
