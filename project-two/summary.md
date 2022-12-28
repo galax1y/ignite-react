@@ -223,3 +223,43 @@ switch (action.type) {
 ```
 
 Creio que o `reducer` deve ser enxergado como um design pattern.
+
+---
+
+## `Immer`
+
+É uma biblioteca que nos permite editar estados sem levar em conta o conceito de imutabilidade do React.
+
+`npm i immer` `import { produce } from 'immer'`
+
+Com imutabilidade:
+
+```jsx
+...
+cycles: state.cycles.map((cycle) => {
+  if (cycle.id === state.activeCycleId) {
+    return { ...cycle, interruptedDate: new Date() }
+  } else {
+    return cycle
+  }
+}),
+...
+```
+
+Com `immer` é muito mais legível:
+
+```jsx
+const currentCycleIndex = state.cycles.findIndex((cycle) => {
+  return cycle.id === state.activeCycleId
+})
+
+if (currentCycleIndex < 0) {
+  return state
+}
+
+return produce(state, (draft) => {
+  // immer "ignorando" imutabilidade
+  draft.activeCycleId = null
+  draft.cycles[currentCycleIndex].interruptedDate = new Date()
+})
+```
