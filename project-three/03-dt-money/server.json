@@ -15,6 +15,14 @@
       "category": "Alimentação",
       "price": 59.9,
       "createdAt": "2023-01-04T17:46:28.677Z"
+    },
+    {
+      "id": 3,
+      "description": "Meia",
+      "type": "outcome",
+      "category": "Vestimenta",
+      "price": 25.1,
+      "createdAt": "2023-01-04T17:51:28.677Z"
     }
   ]
 }
