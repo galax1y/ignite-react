@@ -33,8 +33,6 @@ export function NewTransactionModal() {
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
     // async-await é para simular delay
     await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    console.log(data)
   }
 
   return (
