@@ -47,3 +47,7 @@ A biblioteca é bem completa e já vem com várias funcionalidades incluindo faz
 Além disso, cada componente pode ser instalado individualmente, mantendo a aplicação leve.
 
 ---
+
+## React Dev Tools
+
+Uma extensão que permite ver a hierarquia de componentes e suas renderizações, acesso à contextos, tempo de execução (performance), componentes que renderizam em cada ação específica.

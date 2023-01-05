@@ -55,6 +55,14 @@
       "type": "outcome",
       "createdAt": "2023-01-05T05:22:10.142Z",
       "id": 7
+    },
+    {
+      "description": "Profiler teste",
+      "price": 2000,
+      "category": "Profiler teste",
+      "type": "income",
+      "createdAt": "2023-01-05T05:34:03.274Z",
+      "id": 8
     }
   ]
 }
