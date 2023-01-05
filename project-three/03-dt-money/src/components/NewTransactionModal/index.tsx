@@ -10,6 +10,8 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as z from 'zod'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useContext } from 'react'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -26,13 +28,22 @@ export function NewTransactionModal() {
     register,
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionFormSchema),
+    defaultValues: {
+      type: 'income',
+    },
   })
 
+  const { createTransaction } = useContext(TransactionsContext)
+
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    // async-await é para simular delay
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const { description, price, category, type } = data
+
+    await createTransaction({ description, price, category, type })
+
+    reset()
   }
 
   return (
@@ -70,7 +81,6 @@ export function NewTransactionModal() {
             control={control}
             name="type"
             render={({ field }) => {
-              console.log(field)
               return (
                 <TransactionType
                   onValueChange={field.onChange}

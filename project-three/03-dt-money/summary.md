@@ -39,3 +39,11 @@
 A biblioteca é bem completa e já vem com várias funcionalidades incluindo fazer POST, UPDATE, DELETE, ordenar, filtrar e muitos mais.
 
 ---
+
+## Radix
+
+É uma biblioteca de componentes de UI totalmente tipados que oferece componentes sem estilização, mas com acessibilidade pré-pronta, fácil customização e melhor experiência de desenvolvimento.
+
+Além disso, cada componente pode ser instalado individualmente, mantendo a aplicação leve.
+
+---

@@ -23,6 +23,38 @@
       "category": "Vestimenta",
       "price": 25.1,
       "createdAt": "2023-01-04T17:51:28.677Z"
+    },
+    {
+      "description": "Teste de transação",
+      "price": 85,
+      "category": "Teste",
+      "type": "income",
+      "createdAt": "2023-01-05T04:54:08.888Z",
+      "id": 4
+    },
+    {
+      "description": "Teste de transação 2",
+      "price": 100,
+      "category": "Teste de transação 2",
+      "type": "outcome",
+      "createdAt": "2023-01-05T04:58:33.235Z",
+      "id": 5
+    },
+    {
+      "description": "Teste de transação 3",
+      "price": 100,
+      "category": "Teste de transação 3",
+      "type": "outcome",
+      "createdAt": "2023-01-05T05:10:48.932Z",
+      "id": 6
+    },
+    {
+      "description": "Teste de transação 4",
+      "price": 800,
+      "category": "Teste de transação 4",
+      "type": "outcome",
+      "createdAt": "2023-01-05T05:22:10.142Z",
+      "id": 7
     }
   ]
 }
