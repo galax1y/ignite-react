@@ -84,6 +84,49 @@ export const {
 })
 ```
 
+Temas globais != Estilização global
+
+Temas basicamente é a paleta de cores da aplicação.
+
+Estilização global se faz com a propriedade `globalCss` da seguinte maneira:
+
+Em `src/styles/global.ts`, criar a estilização
+
+```tsx
+import { globalCss } from '.'
+
+export const globalStyles = globalCss({
+  '*': {
+    margin: 0,
+    padding: 0,
+  },
+
+  body: {
+    backgroundColor: '$gray900',
+    color: '$gray100',
+    '-webkit-font-smoothing': 'antialiased',
+  },
+
+  'body, input, textarea, button': {
+    fontFamily: 'Roboto',
+    fontWeight: 400,
+  },
+})
+```
+
+Em `src/pages/_app_.tsx`, importar e aplicar o método `globalCss`
+
+```tsx
+import type { AppProps } from 'next/app'
+import { globalStyles } from '../styles/global' // isso
+
+globalStyles() // e isso
+
+export default function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />
+}
+```
+
 Criando componente com o **`Stitches`**
 
 ```tsx
@@ -103,3 +146,9 @@ const Button = styled('button', {
   },
 })
 ```
+
+---
+
+## Elementos comuns a várias páginas
+
+Elementos que serão compartilhados por todas as páginas, por exemplo, o cabeçalho, podem ser colocados no arquivo `_app.tsx`.
