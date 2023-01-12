@@ -2,7 +2,7 @@ import { styled } from '../styles'
 
 // Criando componente com o Stitches
 const Button = styled('button', {
-  backgroundColor: '$rocketseat',
+  backgroundColor: '$green300',
   borderRadius: 4,
   border: 0,
   padding: '0.75rem 2rem',
