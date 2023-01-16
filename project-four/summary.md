@@ -152,3 +152,58 @@ const Button = styled('button', {
 ## Elementos comuns a várias páginas
 
 Elementos que serão compartilhados por todas as páginas, por exemplo, o cabeçalho, podem ser colocados no arquivo `_app.tsx`.
+
+---
+
+## Rodar a requisição da API no server side
+
+Por que fazer isso?
+
+Ao usar o **useEffect** do **React** para fazer requisição de alguma imagem, a página carrega, useEffect é disparado e então a requisição à API é concluída, ou seja, ainda é necessário a aplicação de JavaScript para o conteúdo página ser carregado completamente. Isso é ruim para a SEO já que crawlers não executam JS.
+
+- Exportando uma função chamada `getServerSideProps`, realiza o Server-Side-Rendering de uma página toda vez que ela for carregada.
+- Next.js vai pré renderizar essa página em cada request usando os dados retornados pelo `getServerSideProps`
+
+```jsx
+// SSR
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  // retorna uma lista de objetos HomeProps resultantes da requisição à API.
+  return {
+    props: {
+      products,
+    },
+  }
+}
+
+export default function Home({ products }: HomeProps[]) {
+  // renderiza em tela os objetos
+}
+```
+
+Mas no Next, um HTML pronto é retornado para o usuário, então rodando as requisições no lado do servidor, montando um HTML estático, guardando-o em cache e retornando esse cache para o usuário, é possível diminuir o número total de requisições à API. É assim que conseguimos o melhor do Next.
+
+E esse é o conceito de **SSG (static site generation)**.
+
+Exemplo.: Uma vez por dia o servidor renderiza uma versão da página e a armazena em cache. Todos os usuários que acessarem no mesmo dia, receberão o mesmo HTML/CSS/JS quando acessarem o site.
+
+Como fazer isso no Next? É só trocar `getServerSideProps` (SSR) por `getStaticProps` (SSG)
+
+```jsx
+// SSG
+
+export const getStaticProps: GetStaticProps = async () => {
+  // Igual o código do getServerSideProps
+  // ...
+  return {
+    props: {
+      products,
+    },
+    revalidate: 60 * 60 * 24, // a cada 24 horas refaz a página
+  }
+}
+```
+
+Em termos de desenvolvimento, não muda nada, as páginas ainda vão recarregar como no método SSR, mas em produção ocorre o armazenamento em cache e distribuição.
+
+E outro detalhe importante é que ao usar SSG, não é possível ter acesso a informações do usuário como cookies, headers do request etc.
