@@ -212,4 +212,20 @@ E outro detalhe importante é que ao usar SSG, não é possível ter acesso a in
 
 O conteúdo da página não varia ou varia muito pouco. Quanto mais tempo a informação em cache for válida, melhor, caso a informação mude ou seja necessário pegar informações do request, se usa SSR com o método `getServerSideProps`
 
-Os métodos `getServerSideProps` e `getStaticProps` podem acessar os parâmetros de um **arquivo parametrizado**
+Os métodos `getServerSideProps` e `getStaticProps` podem acessar os parâmetros de um **arquivo parametrizado** ao realizar uma desestruturação:
+
+Coletando informação do arquivo `[id].tsx`:
+
+```tsx
+export const getStaticProps: GetStaticProps = async ({ params }) {
+  const productId = String(params!.id)
+}
+```
+
+---
+
+## Prefetch do `<Link />`
+
+O componente `<Link />` do Next tem uma propriedade chamada prefetch que por padrão é habilitada.
+
+Quando damos hover em um componente link, ele pré-carrega o conteúdo necessário pra página, mas isso pode ser ruim pro nosso servidor porque pode ser que sobrecarregue de requisições.
