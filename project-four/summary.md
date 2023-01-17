@@ -20,7 +20,7 @@ Criar o componente React
 
 ```tsx
 export default function Product() {
-  return <h1>Product</h1>
+	return <h1>Product</h1>
 }
 ```
 
@@ -42,8 +42,8 @@ E o parâmetro pode ser acessado da seguinte maneira:
 import { useRouter } from 'next/router'
 
 export default function Product() {
-  const { query } = useRouter()
-  return <h1>{JSON.stringify(query)}</h1>
+	const { query } = useRouter()
+	return <h1>{JSON.stringify(query)}</h1>
 }
 ```
 
@@ -67,20 +67,20 @@ Configurando o **`Stitches`** + criando temas globais no arquivo em `src/styles/
 import { createStitches } from '@stitches/react'
 
 export const {
-  config,
-  styled,
-  css,
-  globalCss,
-  keyframes,
-  getCssText,
-  theme,
-  createTheme,
+	config,
+	styled,
+	css,
+	globalCss,
+	keyframes,
+	getCssText,
+	theme,
+	createTheme,
 } = createStitches({
-  theme: {
-    colors: {
-      rocketseat: '#8257e6',
-    },
-  },
+	theme: {
+		colors: {
+			rocketseat: '#8257e6',
+		},
+	},
 })
 ```
 
@@ -96,21 +96,21 @@ Em `src/styles/global.ts`, criar a estilização
 import { globalCss } from '.'
 
 export const globalStyles = globalCss({
-  '*': {
-    margin: 0,
-    padding: 0,
-  },
+	'*': {
+		margin: 0,
+		padding: 0,
+	},
 
-  body: {
-    backgroundColor: '$gray900',
-    color: '$gray100',
-    '-webkit-font-smoothing': 'antialiased',
-  },
+	body: {
+		backgroundColor: '$gray900',
+		color: '$gray100',
+		'-webkit-font-smoothing': 'antialiased',
+	},
 
-  'body, input, textarea, button': {
-    fontFamily: 'Roboto',
-    fontWeight: 400,
-  },
+	'body, input, textarea, button': {
+		fontFamily: 'Roboto',
+		fontWeight: 400,
+	},
 })
 ```
 
@@ -123,7 +123,7 @@ import { globalStyles } from '../styles/global' // isso
 globalStyles() // e isso
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+	return <Component {...pageProps} />
 }
 ```
 
@@ -131,19 +131,19 @@ Criando componente com o **`Stitches`**
 
 ```tsx
 const Button = styled('button', {
-  backgroundColor: '$rocketseat',
-  borderRadius: 4,
-  border: 0,
-  padding: '0.75rem 2rem',
+	backgroundColor: '$rocketseat',
+	borderRadius: 4,
+	border: 0,
+	padding: '0.75rem 2rem',
 
-  span: {
-    color: 'Red',
-    fontWeight: 'bold',
-  },
+	span: {
+		color: 'Red',
+		fontWeight: 'bold',
+	},
 
-  '&:hover': {
-    filter: 'invert(100%)',
-  },
+	'&:hover': {
+		filter: 'invert(100%)',
+	},
 })
 ```
 
@@ -168,16 +168,16 @@ Ao usar o **useEffect** do **React** para fazer requisição de alguma imagem, a
 // SSR
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // retorna uma lista de objetos HomeProps resultantes da requisição à API.
-  return {
-    props: {
-      products,
-    },
-  }
+	// retorna uma lista de objetos HomeProps resultantes da requisição à API.
+	return {
+		props: {
+			products,
+		},
+	}
 }
 
 export default function Home({ products }: HomeProps[]) {
-  // renderiza em tela os objetos
+	// renderiza em tela os objetos
 }
 ```
 
@@ -193,14 +193,14 @@ Como fazer isso no Next? É só trocar `getServerSideProps` (SSR) por `getStatic
 // SSG
 
 export const getStaticProps: GetStaticProps = async () => {
-  // Igual o código do getServerSideProps
-  // ...
-  return {
-    props: {
-      products,
-    },
-    revalidate: 60 * 60 * 24, // a cada 24 horas refaz a página
-  }
+	// Igual o código do getServerSideProps
+	// ...
+	return {
+		props: {
+			products,
+		},
+		revalidate: 60 * 60 * 24, // a cada 24 horas refaz a página
+	}
 }
 ```
 
@@ -226,9 +226,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) {
 
 ## Prefetch do `<Link />`
 
-O componente `<Link />` do Next tem uma propriedade chamada prefetch que por padrão é habilitada.
+O componente `<Link />` do Next tem uma propriedade chamada prefetch que por padrão é habilitada, fazendo o prefetch de todos os botões.
 
-Quando damos hover em um componente link, ele pré-carrega o conteúdo necessário pra página, mas isso pode ser ruim pro nosso servidor porque pode ser que sobrecarregue de requisições.
+Com `prefetch={false}` Quando damos hover em um componente link, ele pré-carrega o conteúdo.
+
+É melhor que a opção de `prefetch={true}` em questão de sobrecarregar o servidor.
 
 ---
 
@@ -243,7 +245,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 // código server side
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  return res.json({ message: 'Hello World' })
+	return res.json({ message: 'Hello World' })
 }
 ```
 
@@ -252,3 +254,11 @@ Agora acessando `localhost:xxxx/api/hello` receberemos como resposta:
 ```json
 { "message": "Hello World" }
 ```
+
+---
+
+## Stripe
+
+É uma API de pagamentos completa, omiti o uso da API nesse resumo, é melhor ir na documentação quando for necessário.
+
+[Documentação Stripe](https://stripe.com/docs)
