@@ -229,3 +229,26 @@ export const getStaticProps: GetStaticProps = async ({ params }) {
 O componente `<Link />` do Next tem uma propriedade chamada prefetch que por padrão é habilitada.
 
 Quando damos hover em um componente link, ele pré-carrega o conteúdo necessário pra página, mas isso pode ser ruim pro nosso servidor porque pode ser que sobrecarregue de requisições.
+
+---
+
+## Rotas API no NextJS
+
+No Next, os arquivos dentro de page são rotas, então pra criar uma API é fácil:
+
+Em `src/pages/` criar uma pasta e um arquivo `api/hello.ts`
+
+```ts
+import { NextApiRequest, NextApiResponse } from 'next'
+
+// código server side
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  return res.json({ message: 'Hello World' })
+}
+```
+
+Agora acessando `localhost:xxxx/api/hello` receberemos como resposta:
+
+```json
+{ "message": "Hello World" }
+```
