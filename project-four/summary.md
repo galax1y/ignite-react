@@ -207,3 +207,9 @@ export const getStaticProps: GetStaticProps = async () => {
 Em termos de desenvolvimento, não muda nada, as páginas ainda vão recarregar como no método SSR, mas em produção ocorre o armazenamento em cache e distribuição.
 
 E outro detalhe importante é que ao usar SSG, não é possível ter acesso a informações do usuário como cookies, headers do request etc.
+
+**Qual a condição pra aplicar SSG (getStaticProps)?**
+
+O conteúdo da página não varia ou varia muito pouco. Quanto mais tempo a informação em cache for válida, melhor, caso a informação mude ou seja necessário pegar informações do request, se usa SSR com o método `getServerSideProps`
+
+Os métodos `getServerSideProps` e `getStaticProps` podem acessar os parâmetros de um **arquivo parametrizado**
