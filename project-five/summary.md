@@ -12,4 +12,4 @@ Alguns design systems abertos:
 
 [Microsoft](https://www.microsoft.com/design/fluent/)
 
-Um design system não necessariamente código, pode ser também, por exemplo, a maneira como o front-end deve se comunicar com o usuário usando voz passiva/ativa
+Um design system não é necessariamente código, pode ser também, por exemplo, a maneira como o front-end deve se comunicar com o usuário usando voz passiva/ativa
