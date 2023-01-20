@@ -13,3 +13,21 @@ Alguns design systems abertos:
 [Microsoft](https://www.microsoft.com/design/fluent/)
 
 Um design system não é necessariamente código, pode ser também, por exemplo, a maneira como o front-end deve se comunicar com o usuário usando voz passiva/ativa
+
+---
+
+## TSUP
+
+Uma ferramenta para converter o código em um pacote que pode ser carregado por outras aplicações.
+
+Também poderia ser feito com `npx tsc` mas geraria um arquivo .js para cada arquivo .ts, enchendo de coisas na pasta.
+
+O TSUP pode converter todos os arquivos para um único dentro da pasta dist, e ainda tem a capacidade de passar pra vários formatos.
+
+Em package.json
+
+`"build": "tsup src/index.ts --format esm,cjs --dts"`
+
+**`npm run build`** para buildar o projeto
+
+---
