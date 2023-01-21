@@ -31,3 +31,7 @@ Em package.json
 **`npm run build`** para buildar o projeto
 
 ---
+
+## Monorepo
+
+É uma escolha de arquitetura no desenvolvimento de software na qual o código de vários projetos é armazenado em um mesmo repositório, e como os projetos podem ter relações entre si, seria mais difícil mantê-los separados, então o **`Monorepo`** administra as dependências compartilhadas dos projetos e os mantém juntos.
