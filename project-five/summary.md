@@ -37,3 +37,9 @@ Em package.json
 É uma escolha de arquitetura no desenvolvimento de software na qual o código de vários projetos é armazenado em um mesmo repositório, e como os projetos podem ter relações entre si, seria mais difícil mantê-los separados, então o **`Monorepo`** administra as dependências compartilhadas dos projetos e os mantém juntos.
 
 Configurações como a do TypeScript e ESLint podem ser compartilhadas entre todos os projetos
+
+---
+
+## Storybook
+
+`npx sb init --builder @storybook/builder-vite --type react --use-npm`
