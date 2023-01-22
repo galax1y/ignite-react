@@ -25,9 +25,11 @@
     "vite": "^4.0.4"
   },
   "dependencies": {
+    "@galaxy-ui/eslint-config": "*",
+    "@galaxy-ui/ts-config": "*",
     "@galaxy-ui/react": "*",
     "@galaxy-ui/tokens": "*",
-    "@galaxy-ui/eslint-config": "*",
+    "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
