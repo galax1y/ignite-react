@@ -1,9 +1,9 @@
 import { Button, ButtonProps } from '@galaxy-ui/react'
-import {StoryObj, Meta} from '@storybook/react'
+import { StoryObj, Meta } from '@storybook/react'
 
 // configuração global
 export default {
-  title: "Button",
+  title: "Form/Button",
   component: Button,
 
   args: {
