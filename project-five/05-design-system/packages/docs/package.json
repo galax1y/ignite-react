@@ -1,12 +1,13 @@
 {
-  "name": "@galaxy-ui/docs",
+  "name": "@lucas-galaxy-ui/docs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "start-storybook -p 6006",
-    "build": "build-storybook"
+    "build": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [],
   "author": "",
@@ -19,16 +20,19 @@
     "@storybook/addon-links": "^6.5.15",
     "@storybook/builder-vite": "^0.3.0",
     "@storybook/react": "^6.5.15",
+    "@storybook/storybook-deployer": "^2.8.16",
     "@storybook/testing-library": "^0.0.13",
     "@vitejs/plugin-react": "^3.0.1",
     "babel-loader": "^8.3.0",
     "vite": "^4.0.4"
   },
   "dependencies": {
-    "@galaxy-ui/eslint-config": "*",
-    "@galaxy-ui/ts-config": "*",
-    "@galaxy-ui/react": "*",
-    "@galaxy-ui/tokens": "*",
+    "@lucas-galaxy-ui/eslint-config": "*",
+    "@lucas-galaxy-ui/react": "*",
+    "@lucas-galaxy-ui/tokens": "*",
+    "@lucas-galaxy-ui/ts-config": "*",
+    "@storybook/addon-a11y": "^6.5.15",
+    "phosphor-react": "^1.4.1",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

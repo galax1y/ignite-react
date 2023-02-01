@@ -1,6 +1,6 @@
 {
-	"name": "@galaxy-ui/react",
-	"version": "1.0.0",
+	"name": "@lucas-galaxy-ui/react",
+	"version": "1.1.0",
 	"description": "",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -14,9 +14,9 @@
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
-		"@galaxy-ui/eslint-config": "*",
-		"@galaxy-ui/tokens": "*",
-		"@galaxy-ui/ts-config": "*",
+		"@lucas-galaxy-ui/eslint-config": "*",
+		"@lucas-galaxy-ui/tokens": "*",
+		"@lucas-galaxy-ui/ts-config": "*",
 		"@types/react": "^18.0.27",
 		"@types/react-dom": "^18.0.10",
 		"react": "^18.2.0",
@@ -24,6 +24,11 @@
 		"typescript": "^4.9.4"
 	},
 	"dependencies": {
-		"@stitches/react": "^1.2.8"
+		"@radix-ui/react-avatar": "^1.0.1",
+		"@radix-ui/react-checkbox": "^1.0.1",
+		"@radix-ui/react-toast": "^1.1.2",
+		"@radix-ui/react-tooltip": "^1.0.3",
+		"@stitches/react": "^1.2.8",
+		"phosphor-react": "^1.4.1"
 	}
 }

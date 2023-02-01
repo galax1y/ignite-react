@@ -1,6 +1,6 @@
 {
-	"name": "@galaxy-ui/tokens",
-	"version": "1.0.0",
+	"name": "@lucas-galaxy-ui/tokens",
+	"version": "1.1.0",
 	"description": "",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -14,8 +14,8 @@
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
-		"@galaxy-ui/ts-config": "*",
-		"@galaxy-ui/eslint-config": "*",
+		"@lucas-galaxy-ui/ts-config": "*",
+		"@lucas-galaxy-ui/eslint-config": "*",
 		"tsup": "^6.5.0",
 		"typescript": "^4.9.4"
 	}

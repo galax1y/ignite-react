@@ -1,4 +1,4 @@
 {
-	"extends": "@galaxy-ui/ts-config/react.json",
+	"extends": "@lucas-galaxy-ui/ts-config/react.json",
 	"include": ["src"]
 }

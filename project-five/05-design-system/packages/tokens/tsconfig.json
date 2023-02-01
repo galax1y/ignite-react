@@ -1,4 +1,4 @@
 {
-	"extends": "@galaxy-ui/ts-config/base.json",
+	"extends": "@lucas-galaxy-ui/ts-config/base.json",
 	"include": ["src"]
 }

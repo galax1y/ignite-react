@@ -1,7 +1,8 @@
 {
-	"name": "@galaxy-ui/eslint-config",
+	"name": "@lucas-galaxy-ui/eslint-config",
+	"version": "1.0.0",
 	"license": "MIT",
-	"private": "true",
+	"private": true,
 	"main": "index.js",
 	"devDependencies": {
 		"@rocketseat/eslint-config": "^1.1.3",

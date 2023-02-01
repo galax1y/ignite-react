@@ -6,7 +6,7 @@ import {
   lineHeights,
   radii,
   space,
-} from '@galaxy-ui/tokens'
+} from '@lucas-galaxy-ui/tokens'
 import { createStitches, defaultThemeMap } from '@stitches/react'
 
 export const {
