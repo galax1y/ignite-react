@@ -25,3 +25,20 @@ Em `src/_document.tsx` adicionar no `Head` os links coletados no Fonts Google
 	></style>
 </Head>
 ```
+
+Estilizando componentes da biblioteca pronta pelo Stitches
+
+No `src/componenteX/styles.ts`
+
+```ts
+import { styled, Heading } from '@ignite-ui/react'
+
+export const Hero = styled('div', {
+	maxWidth: 480,
+	padding: '0 $10',
+
+	[`${Heading}`]: {
+		color: 'red',
+	},
+})
+```
