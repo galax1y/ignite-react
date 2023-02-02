@@ -239,3 +239,42 @@ const userExists = await prisma.user.findUnique({where: {username}})
 if (userExists)
 	return res.status(400).json({message: 'username is already taken'})
 ```
+
+---
+
+### Identificando o usuário ao longo do processo de cadastro usando **`Cookies`**
+
+Acessar cookies e mandar cookies para o navegador do usuário é fácil
+
+```ts
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse,
+) {
+	req.cookies // coleta os cookies
+	res.setHeader('Set-Cookie', []) // seta cookies
+}
+```
+
+Essa API é um pouco complicada de trabalhar com o Cookies, então foi sugerido usar outra biblioteca chamada **`nookies`**
+`npm i nookies`
+
+Ela usa uma biblioteca chamada `cookie` por baixo dos panos e não vem com tipagem TypeScript inclusa então:
+`npm i @types/cookie -D`
+
+Criando um cookie com o **`nookies`**
+
+```ts
+import {setCookie} from 'nookies'
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse,
+) {
+	// depois de criar o usuário no banco de dados, setar o cookie
+	// setCookie({}, '@nome-cookie', dados-cookie, {config})
+	setCookie({res}, '@ignitecall-galaxy:userId', user.id, {
+		maxAge: 60 * 60 * 24 * 7, // 7 days until cookie expiration
+		path: '/register', // routes that can access this cookie
+	})
+}
+```
