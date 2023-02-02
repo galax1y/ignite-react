@@ -14,9 +14,7 @@ const registerFormSchema = zod.object({
     .regex(/^([a-z\\-]+)$/, {
       message: 'Somente letras sao permitidas',
     })
-    .transform((data) => {
-      data.toLowerCase()
-    }),
+    .transform((data) => data.toLowerCase()),
   name: zod
     .string()
     .min(3, { message: 'Um nome deve conter pelo menos 3 caracteres' }),
