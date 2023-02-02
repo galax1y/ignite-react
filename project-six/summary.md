@@ -55,24 +55,73 @@ Resolver que faz o **`zod`** e outras bibliotecas externas funcionar com o **`re
 Instalar tudo junto
 `npm i react-hook-form @hookform/resolvers zod`
 
-Exemplo básico no uso do zod
+Exemplo básico **`react-hook-form + zod + @hookform/resolvers/zod`**
 
 ```jsx
+import { useForm } from 'react-hook-form'
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 // Criando o schema informando os campos que o form deve retornar e validando
 const claimUsernameFormSchema = zod.object({
-	username: z.string(),
+	username: z.string()
+	.min(3), // Exemplo de validação. Tem MUITAS.
 })
 
 // A partir do schema, é possível criar o tipo do objeto no TypeScript
 type ClaimUsernameFormData = zod.infer<typeof claimUsernameFormSchema>
 
+// Se a validação passar, esse código vai ser rodado
+async function handleUsernameFormSubmit(data: ClaimUsernameFormData) {
+	...
+}
+
 // E isso é usado no generic do useForm, assim evita erros futuros no form, já que os campos que existem já estão declarados
 // Autocomplete também passa a funcionar quando registra uma informação
 export function claimUsernameForm() {
-	const { register, handleSubmit } = useForm<ClaimUsernameFormData>()
+	const { register, handleSubmit } = useForm<ClaimUsernameFormData>(
+		// Objeto de configuração do useForm deve apontar o resolver do zod vindo de @hookform/resolvers/zod
+		// O schema deve ser fornecido ao resolver!!
+		{
+    	resolver: zodResolver(claimUsernameFormSchema),
+    }
+	)
 
-	<TextInput {...register('username')} />
+	// Criando um input controlled/uncontrolled com uso do react-hook-form
+	<form onSubmit={handleSubmit(handleUsernameFormSubmit)}>
+		<TextInput {...register('username')} />
+		<button type="submit">
+	<form>
 }
 ```
 
-![Uso do Zod](./assets/exemplo-uso-zod.png)
+A validação nesse caso já tá funcionando, ele não vai passar o conteúdo à função
+
+![Exemplo zod](./assets/exemplo-uso-zod.png)
+
+Para adicionar campos que o formulário deve coletar é só:
+
+1. Adicionar o campo no Schema, tipar e validar
+2. Registrar o elemento (input) que vai coletar esse campo
+
+Mensagens de erro são acessadas usando o useForm:
+
+```jsx
+// prettier-ignore
+const {
+	register,
+	handleSubmit,
+	formState: { errors }, // Acesso aos erros
+} = useForm<ClaimUsernameFormData>(
+	{resolver: zodResolver(claimUsernameFormSchema)}
+	)
+
+// E assim mostrar a informação em tela
+// prettier-ignore
+{errors.username?.message}
+
+// Outra maneira seria: verificar se isso é um booleano true, e então renderizar um componente estilizado
+{
+	!!errors.username?.message && <ErrorMessageComponent />
+}
+```
