@@ -31,7 +31,7 @@ Estilizando componentes da biblioteca pronta pelo Stitches
 No `src/componenteX/styles.ts`
 
 ```ts
-import { styled, Heading } from '@ignite-ui/react'
+import {styled, Heading} from '@ignite-ui/react'
 
 export const Hero = styled('div', {
 	maxWidth: 480,
@@ -42,6 +42,10 @@ export const Hero = styled('div', {
 	},
 })
 ```
+
+---
+
+### react-hook-form
 
 Biblioteca pra criação de inputs de usuário controlados ou não-controlados no React. Comum pra validação e performática.
 `npm i react-hook-form`
@@ -130,10 +134,10 @@ Redirecionamento no `Next.js` passando parâmetros na query:
 
 ```jsx
 async function handlePreRegister(data: ClaimUsernameFormData) {
-	const { username } = data
+	const {username} = data
 
 	// redirecionamento
-	await router.push({ pathname: '/register', query: { username } })
+	await router.push({pathname: '/register', query: {username}})
 }
 ```
 
@@ -148,3 +152,41 @@ export default function Register() {
 	console.log(router.query.username)
 }
 ```
+
+---
+
+### Prisma - ORM altamente integrado ao TypeScript
+
+Tem integração com o **`Next.js`** e com o **`TypeScript`** então o autocomplete é muito forte
+Também tem uma extensão no VSCode pra syntax highlighting
+
+Instalação da CLI do Prisma:
+`npm i prisma -D`
+
+Dependência para lidar com o banco de dados (leitura, escrita, alterações, remoções):
+`npm i @prisma/client`
+
+Inicializar o Prisma:
+`npx prisma init --datasource-provider SQLite`
+SQLite é só uma das opções, as opções disponíveis são: `cockroachdb`, `mongodb`, `mysql`, `postgresql`, `sqlite`, `sqlserver`
+
+Comando pra rodar a migration:
+`npx prisma migrate dev`
+
+Comando pra rodar o Prisma Studio (visualização do banco de dados):
+`npx prisma studio`
+
+Criando um modelo de dados
+
+```prisma
+model User {
+  id       String @id @default(uuid()) // @id -> primary key - @default -> valor padrão - uuid() -> gera um número aleatório
+  username String @unique // podemos indicar se um campo deve ser único
+  name     String
+  created_at DateTime @default(now()) // now() -> cria um timestamp quando uma entrada é criada
+
+  @@map("users") // define o nome da tabela no banco de dados
+}
+```
+
+Feito isso é só rodar a migration
