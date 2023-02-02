@@ -190,3 +190,52 @@ model User {
 ```
 
 Feito isso é só rodar a migration
+
+Criando uma entrada no banco de dados
+
+Devemos ter um Prisma Client
+
+```ts
+import {PrismaClient} from '@prisma/client'
+
+export const prisma = new PrismaClient({
+	log: ['query'],
+})
+```
+
+E quando um gatilho ex.: API Route for acionado, com os dados sendo passados pelo corpo da requisição:
+
+```ts
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse,
+) {
+	// devemos definir melhor o método HTTP válido para essa API Route
+	if (req.method !== 'POST') {
+		return res.status(405).end()
+	}
+	// pegando os dados no request body
+	const {username, name} = req.body
+
+	// criando a entrada no banco de dados
+	const user = await prisma.user.create({data: {name, username}})
+
+	// retornando mensagem de sucesso para o usuário
+	return res.status(201).json(user)
+}
+```
+
+Um detalhe é que se um campo for único, devemos fazer a validação como se fosse um backend de verdade.
+Caso contrário causaremos vários erros 500 (Internal Server Error)
+
+Solução:
+
+```ts
+// verifica na tabela user, nos campos únicos (que são o id e o username)
+// se o username passado no req.body já está sendo usado em alguma entrada
+const userExists = await prisma.user.findUnique({where: {username}})
+
+// se sim, retornamos um erro ao usuário
+if (userExists)
+	return res.status(400).json({message: 'username is already taken'})
+```
