@@ -4,20 +4,19 @@ import { Form, FormAnnotation } from './styles'
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
 
-const claimUsernameFormSchema = zod.object({
+const ClaimUsernameFormSchema = zod.object({
   username: zod
     .string()
     .min(3, { message: 'Um username deve conter pelo menos 3 caracteres' })
     .regex(/^([a-z\\-]+)$/, {
       message: 'Somente letras sao permitidas',
     })
-    .transform((data) => {
-      data.toLowerCase()
-    }),
+    .transform((username) => username.toLowerCase()),
 })
 
-type ClaimUsernameFormData = zod.infer<typeof claimUsernameFormSchema>
+type ClaimUsernameFormData = zod.infer<typeof ClaimUsernameFormSchema>
 
 export function ClaimUsernameForm() {
   const {
@@ -25,11 +24,15 @@ export function ClaimUsernameForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<ClaimUsernameFormData>({
-    resolver: zodResolver(claimUsernameFormSchema),
+    resolver: zodResolver(ClaimUsernameFormSchema),
   })
 
+  const router = useRouter()
+
   async function handlePreRegister(data: ClaimUsernameFormData) {
-    console.log(data)
+    const { username } = data
+
+    await router.push({ pathname: '/register', query: { username } })
   }
 
   return (

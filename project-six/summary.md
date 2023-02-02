@@ -125,3 +125,26 @@ const {
 	!!errors.username?.message && <ErrorMessageComponent />
 }
 ```
+
+Redirecionamento no `Next.js` passando parâmetros na query:
+
+```jsx
+async function handlePreRegister(data: ClaimUsernameFormData) {
+	const { username } = data
+
+	// redirecionamento
+	await router.push({ pathname: '/register', query: { username } })
+}
+```
+
+No arquivo que recebe o redirecionamento:
+
+```jsx
+export default function Register() {
+	// recebe os parâmetros
+	const router = useRouter()
+
+	// acessa os parâmetros
+	console.log(router.query.username)
+}
+```
