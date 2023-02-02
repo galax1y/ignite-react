@@ -141,6 +141,10 @@ async function handlePreRegister(data: ClaimUsernameFormData) {
 }
 ```
 
+Um argumento `as` pode ser passado para o `router.push` para que os query params não apareçam na url do usuário
+ex.: `await router.push({pathname: '/register', query: {username}}, '/register')`
+Porém, se o usuário der um F5 na página, o autocomplete não vai estar mais lá, afinal os query params sumiram
+
 No arquivo que recebe o redirecionamento:
 
 ```jsx
@@ -278,3 +282,17 @@ export default async function handler(
 	})
 }
 ```
+
+---
+
+### Protocolo de autenticação **`OAuth`**
+
+É um protocolo para autorização de usuários da Internet em sites de terceiros sem expor credenciais ex.: senhas. É padrão na indústria para uso em autenticação em vários serviços populares como `Google`, `Facebook`, `Discord`, `Dropbox`, `Twitter`, `Twitch` etc.
+
+Se encontra na versão 2.0 e segue o seguinte fluxo de autorização
+![Fluxo OAuth 2.0](./assets/oauth-fluxo.png)
+
+**[Mais informações sobre integração do Next.js com autenticação](https://nextjs.org/docs/authentication)**
+
+O `Next.js` tem uma biblioteca que automatiza muito do processo de autenticação, é a **[next-auth](next-auth.js.org)**
+`npm i next-auth`
