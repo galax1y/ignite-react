@@ -42,3 +42,37 @@ export const Hero = styled('div', {
 	},
 })
 ```
+
+Biblioteca pra criação de inputs de usuário controlados ou não-controlados no React. Comum pra validação e performática.
+`npm i react-hook-form`
+
+Biblioteca para validação integrada com TypeScript. Pode inferir tipos a partir de variáveis ou objetos.
+`npm i zod`
+
+Resolver que faz o **`zod`** e outras bibliotecas externas funcionar com o **`react-hook-form`**.
+`npm i @hookform/resolvers`
+
+Instalar tudo junto
+`npm i react-hook-form @hookform/resolvers zod`
+
+Exemplo básico no uso do zod
+
+```jsx
+// Criando o schema informando os campos que o form deve retornar e validando
+const claimUsernameFormSchema = zod.object({
+	username: z.string(),
+})
+
+// A partir do schema, é possível criar o tipo do objeto no TypeScript
+type ClaimUsernameFormData = zod.infer<typeof claimUsernameFormSchema>
+
+// E isso é usado no generic do useForm, assim evita erros futuros no form, já que os campos que existem já estão declarados
+// Autocomplete também passa a funcionar quando registra uma informação
+export function claimUsernameForm() {
+	const { register, handleSubmit } = useForm<ClaimUsernameFormData>()
+
+	<TextInput {...register('username')} />
+}
+```
+
+![Uso do Zod](./assets/exemplo-uso-zod.png)
