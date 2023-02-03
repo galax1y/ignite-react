@@ -15,7 +15,7 @@ export const Header = styled('div', {
 
   [`> ${Text}`]: {},
   color: '$gray200',
-  lineHeight: '$base',
+  marginBottom: '$6',
 })
 
 export const Form = styled(Box, {
