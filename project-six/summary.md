@@ -296,3 +296,37 @@ Se encontra na versão 2.0 e segue o seguinte fluxo de autorização
 
 O `Next.js` tem uma biblioteca que automatiza muito do processo de autenticação, é a **[next-auth](next-auth.js.org)**
 `npm i next-auth`
+
+Configuração do `next-auth` com o Google Calendar está em `src/pages/api/auth/[...nextauth].api.ts`
+
+Reparar na seguinte config:
+
+```ts
+authorization: {
+	params: {
+		scope: 'https://www.googleapis.com/auth/calendar',
+	},
+},
+```
+
+Scopes no oAuth 2.0 limitam o acesso da aplicação à conta do usuário
+Nesse caso do calendar, esse acesso é um acesso máximo, mas há vários escopos que dão mais/menos acesso ou acesso especificamente a certos recursos, ex.:
+
+Ver, editar, compartilhar e excluir permanentemente todas as agendas que você pode acessar usando o Google Agenda
+`https://www.googleapis.com/auth/calendar`
+
+Visualize e edite eventos em todas as suas agendas
+`https://www.googleapis.com/auth/calendar.events`
+
+Ver eventos em todas as suas agendas
+`https://www.googleapis.com/auth/calendar.events.readonly`
+
+Veja e faça download de qualquer agenda que você possa acessar usando o Google Agenda
+`https://www.googleapis.com/auth/calendar.readonly`
+
+Ver as configurações da sua agenda
+`https://www.googleapis.com/auth/calendar.settings.readonly`
+
+Autenticação no oAuth 2.0 da Google vai redirecionar para uma página que pedirá acesso da aplicação a cada escopo apontado na config
+
+Devemos também verificar se o usuário afinal nos deu acesso ao recurso necessário antes de continuar, caso contrário pode gerar erros
