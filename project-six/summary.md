@@ -309,7 +309,7 @@ authorization: {
 },
 ```
 
-Scopes no oAuth 2.0 limitam o acesso da aplicação à conta do usuário
+**Scopes** no oAuth 2.0 limitam o acesso da aplicação à conta do usuário
 Nesse caso do calendar, esse acesso é um acesso máximo, mas há vários escopos que dão mais/menos acesso ou acesso especificamente a certos recursos, ex.:
 
 Ver, editar, compartilhar e excluir permanentemente todas as agendas que você pode acessar usando o Google Agenda
