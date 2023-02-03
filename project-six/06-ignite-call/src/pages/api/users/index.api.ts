@@ -23,7 +23,7 @@ export default async function handler(
 
   setCookie({ res }, '@ignitecall-galaxy:userId', user.id, {
     maxAge: 60 * 60 * 24 * 7, // 7 days until cookie expiration
-    path: '/register', // routes that can access this cookie
+    path: '/', // routes that can access this cookie
   })
 
   return res.status(201).json(user)

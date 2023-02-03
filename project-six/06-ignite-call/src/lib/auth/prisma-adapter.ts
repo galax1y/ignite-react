@@ -13,14 +13,14 @@ export function PrismaAdapter(
         req,
       })
 
-      // guard clause
-      if (!userIdOnCookies) throw new Error('User ID not found on cookies')
+      if (!userIdOnCookies) {
+        throw new Error('User ID not found on cookies.')
+      }
 
       const prismaUser = await prisma.user.update({
         where: {
           id: userIdOnCookies,
         },
-
         data: {
           name: user.name,
           email: user.email,
@@ -51,7 +51,9 @@ export function PrismaAdapter(
       })
 
       // guard clause
-      if (!user) return null
+      if (!user) {
+        return null
+      }
 
       return {
         id: user.id,
@@ -72,7 +74,9 @@ export function PrismaAdapter(
       })
 
       // guard clause
-      if (!user) return null
+      if (!user) {
+        return null
+      }
 
       return {
         id: user.id,
@@ -99,7 +103,9 @@ export function PrismaAdapter(
       })
 
       // guard clause
-      if (!account) return null
+      if (!account) {
+        return null
+      }
 
       const { user } = account
 
@@ -117,7 +123,7 @@ export function PrismaAdapter(
     async updateUser(user) {
       const prismaUser = await prisma.user.update({
         where: {
-          id: user.id,
+          id: user.id!,
         },
         data: {
           name: user.name,
@@ -188,7 +194,9 @@ export function PrismaAdapter(
       })
 
       // guard clause
-      if (!prismaSession) return null
+      if (!prismaSession) {
+        return null
+      }
 
       const { user, ...session } = prismaSession
 
