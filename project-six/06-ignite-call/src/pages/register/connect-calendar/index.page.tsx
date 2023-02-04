@@ -6,7 +6,7 @@ import { useSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 // import axios from 'axios'
 
-export default function Register() {
+export default function ConnectCalendar() {
   const session = useSession()
   const router = useRouter()
   const hasAuthError = !!router.query.error
