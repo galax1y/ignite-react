@@ -330,3 +330,17 @@ Ver as configurações da sua agenda
 Autenticação no oAuth 2.0 da Google vai redirecionar para uma página que pedirá acesso da aplicação a cada escopo apontado na config
 
 Devemos também verificar se o usuário afinal nos deu acesso ao recurso necessário antes de continuar, caso contrário pode gerar erros
+
+Util array [0, 1, 2, 3, 4, 5, 6, 7] para dias da semana em pt-br [seg, ter, quar, quin, sex, sab, dom]
+
+```ts
+export function getWeekDays() {
+	const formatter = new Intl.DateTimeFormat('pt-BR', {weekday: 'long'})
+
+	return Array.from(Array(7).keys())
+		.map((day) => formatter.format(new Date(Date.UTC(2021, 5, day))))
+		.map((weekDay) => {
+			return weekDay.substring(0, 1).toUpperCase().concat(weekDay.substring(1))
+		})
+}
+```
