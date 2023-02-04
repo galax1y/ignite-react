@@ -13,6 +13,7 @@ import {
   TextInput,
 } from '@ignite-ui/react'
 import {
+  FormError,
   IntervalBox,
   IntervalDay,
   IntervalInputs,
@@ -20,12 +21,24 @@ import {
   IntervalsContainer,
 } from './styles'
 
-const timeIntervalFormSchema = zod.object({
-  // startTime: zod.string(),
-  // endTime: zod.string(),
+const timeIntervalsFormSchema = zod.object({
+  intervals: zod
+    .array(
+      zod.object({
+        weekDay: zod.number(),
+        enabled: zod.boolean(),
+        startTime: zod.string(),
+        endTime: zod.string(),
+      }),
+    )
+    .length(7)
+    .transform((intervals) => intervals.filter((interval) => interval.enabled))
+    .refine((intervals) => intervals.length > 0, {
+      message: 'É necessário selecionar pelo menos um dia na semana',
+    }),
 })
 
-// type TimeIntervalFormData = zod.infer<typeof timeIntervalFormSchema>
+type TimeIntervalsFormData = zod.infer<typeof timeIntervalsFormSchema>
 
 export default function TimeIntervals() {
   const {
@@ -46,11 +59,10 @@ export default function TimeIntervals() {
         { weekDay: 6, enabled: false, startTime: '08:00', endTime: '18:00' },
       ],
     },
-    // resolver: zodResolver(timeIntervalFormSchema),
+    resolver: zodResolver(timeIntervalsFormSchema),
   })
 
   const intervalsWatcher = watch('intervals')
-
   const weekDays = getWeekDays()
 
   const { fields } = useFieldArray({
@@ -58,7 +70,7 @@ export default function TimeIntervals() {
     name: 'intervals',
   })
 
-  async function handleSetTimeIntervals(data: any) {
+  async function handleSetTimeIntervals(data: TimeIntervalsFormData) {
     console.log(data)
   }
 
@@ -116,7 +128,9 @@ export default function TimeIntervals() {
             )
           })}
         </IntervalsContainer>
-
+        {errors.intervals?.message && (
+          <FormError size="sm">{errors.intervals.message}</FormError>
+        )}
         <Button type="submit" disabled={isSubmitting}>
           Próximo passo
           <ArrowRight size={16} />
