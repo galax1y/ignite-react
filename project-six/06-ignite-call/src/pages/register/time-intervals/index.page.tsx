@@ -1,9 +1,12 @@
-import { Container, Header } from './../styles'
+import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minutes'
 import { useFieldArray, useForm, Controller } from 'react-hook-form'
-import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight } from 'phosphor-react'
 import { getWeekDays } from '@/utils/get-week-days'
+import { Container, Header } from './../styles'
+import { ArrowRight } from 'phosphor-react'
+import { api } from '@/lib/axios'
+import * as zod from 'zod'
+
 import {
   Button,
   Checkbox,
@@ -12,6 +15,7 @@ import {
   Text,
   TextInput,
 } from '@ignite-ui/react'
+
 import {
   FormError,
   IntervalBox,
@@ -20,7 +24,6 @@ import {
   IntervalItem,
   IntervalsContainer,
 } from './styles'
-import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minutes'
 
 const timeIntervalsFormSchema = zod.object({
   intervals: zod
@@ -95,7 +98,8 @@ export default function TimeIntervals() {
 
   async function handleSetTimeIntervals(data: any) {
     const formData = data as TimeIntervalsFormOutput
-    console.log(formData)
+
+    await api.post('/users/time-intervals', formData)
   }
 
   return (
