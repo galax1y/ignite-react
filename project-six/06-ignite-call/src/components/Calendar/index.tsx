@@ -20,10 +20,10 @@ export function Calendar() {
         </CalendarTitle>
         <CalendarActions>
           <button>
-            <CaretLeft size={20} />
+            <CaretLeft />
           </button>
           <button>
-            <CaretRight size={20} />
+            <CaretRight />
           </button>
         </CalendarActions>
       </CalendarHeader>
@@ -47,7 +47,9 @@ export function Calendar() {
             <td>
               <CalendarDay>1</CalendarDay>
             </td>
-            <td></td>
+            <td>
+              <CalendarDay disabled>1</CalendarDay>
+            </td>
             <td></td>
           </tr>
         </tbody>
