@@ -90,6 +90,6 @@ export const TimePickerItem = styled('button', {
   },
 
   '&:focus': {
-    boxShadow: '0 0 0 2px $colors$gray100'
+    boxShadow: '0 0 0 2px $colors$gray100',
   },
 })
