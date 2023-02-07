@@ -5,7 +5,6 @@ export const Container = styled(Box, {
   padding: 0,
 
   display: 'grid',
-  maxWidth: '100%',
   position: 'relative',
 
   variants: {
@@ -33,12 +32,10 @@ export const TimePicker = styled('div', {
   top: 0,
   bottom: 0,
   right: 0,
+  width: 280,
 })
 
 export const TimePickerHeader = styled(Text, {
-  color: '$white',
-  fontSize: '$md',
-  lineHeight: '$base',
   fontWeight: '$medium',
 
   span: {
@@ -59,21 +56,17 @@ export const TimePickerList = styled('div', {
 })
 
 export const TimePickerItem = styled('button', {
-  all: 'unset',
   cursor: 'pointer',
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
 
   fontFamily: '$default',
   fontSize: '$sm',
   lineHeight: '$base',
   color: '$gray100',
+  backgroundColor: '$gray600',
 
   padding: '$2 0',
+  border: 0,
   borderRadius: '$sm',
-  backgroundColor: '$gray600',
 
   '&:last-child': {
     marginBottom: '$6',
