@@ -21,11 +21,12 @@ export function CalendarStep() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   // const [availability, setAvailability] = useState<Availability | null>(null)
   const router = useRouter()
-  const username = String(router.query.username)
 
   const selectedDateWithoutTime = selectedDate
     ? dayjs(selectedDate).format('YYYY-MM-DD')
     : null
+
+  const username = String(router.query.username)
 
   const { data: availability } = useQuery<Availability>(
     ['availability', selectedDateWithoutTime],
