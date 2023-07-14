@@ -23,7 +23,7 @@ export function Player() {
           <div className='flex-1'>
             <Video />
           </div>
-          <aside className='w-80 border-l divide-y-2 divide-zinc-900 border-zinc-800 bg-zinc-900 overflow-y-scroll absolute top-0 bottom-0 right-0 scrollbar scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800'>
+          <aside className='w-80 border-l divide-y-2 divide-zinc-900 border-zinc-800 bg-zinc-900 overflow-y-scroll absolute top-0 bottom-0 right-0 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800'>
             <Module moduleIndex={0} title='Desvendando o Redux' lessonsAmount={2} />
             <Module moduleIndex={1} title='Desvendando o Redux' lessonsAmount={2} />
             <Module moduleIndex={2} title='Desvendando o Redux' lessonsAmount={2} />
