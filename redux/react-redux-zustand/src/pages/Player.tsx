@@ -18,7 +18,7 @@ export function Player() {
           </button>
         </div>
 
-        <main className='relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow'>
+        <main className='relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow pr-80'>
           <div className='flex-1'>
             <div className='w-full bg-zinc-950 aspect-video'>
               <ReactPlayer
@@ -29,7 +29,7 @@ export function Player() {
               />
             </div>
           </div>
-          <aside className='w-80 border-l border-zinc-800 bg-zinc-900'>
+          <aside className='w-80 border-l divide-y-2 divide-zinc-900 border-zinc-800 bg-zinc-900 overflow-y-scroll absolute top-0 bottom-0 right-0 scrollbar scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800'>
             <div>
               <button className='flex items-center w-full gap-3 bg-zinc-800 p-4'>
                 <div className='flex h-10 w-10 rounded-full items-center justify-center bg-zinc-950 text-xs'>
@@ -47,13 +47,13 @@ export function Player() {
               <nav className='relative flex flex-col gap-4 p-6'>
                 <button className='flex items-center gap-3 text-sm text-zinc-400'>
                   <Video className='w-4 h-4 text-zinc-500' />
-                  <span>Fundamentos do Redux</span>
+                  <span>Vídeo</span>
                   <span className='ml-auto font-mono text-xs text-zinc-500'>12:44</span>
                 </button>
 
                 <button className='flex items-center gap-3 text-sm text-zinc-400'>
                   <Video className='w-4 h-4 text-zinc-500' />
-                  <span>Fundamentos do Redux</span>
+                  <span>Vídeo</span>
                   <span className='ml-auto font-mono text-xs text-zinc-500'>12:44</span>
                 </button>
               </nav>
