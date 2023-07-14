@@ -10,8 +10,8 @@ export function App() {
   return (
     <ReduxProvider store={store}>
       <div>
-        <AddTodo />
         <TodoList />
+        <AddTodo />
       </div>
     </ReduxProvider>
   )
