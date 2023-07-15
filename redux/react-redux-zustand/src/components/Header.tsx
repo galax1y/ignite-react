@@ -1,14 +1,18 @@
+import { useAppSelector } from '../store'
 
-interface HeaderProps {
-  title: string
-  description: string
-}
+export function Header() {
+  const { currentModule, currentLesson } = useAppSelector(state => {
+    const { currentModuleIndex, currentLessonIndex } = state.player
 
-export function Header({ title, description }: HeaderProps) {
+    const currentModule = state.player.course.modules[currentModuleIndex]
+    const currentLesson = state.player.course.modules[currentModuleIndex].lessons[currentLessonIndex]
+
+    return { currentModule, currentLesson }
+  })
   return (
     <div className='flex flex-col gap-1'>
-      <h1 className='text-2xl font-bold'>{title}</h1>
-      <span className='text-sm text-zinc-400'>Módulo "{description}"</span>
+      <h1 className='text-2xl font-bold'>{currentLesson.title}</h1>
+      <span className='text-sm text-zinc-400'>Módulo "{currentModule.title}"</span>
     </div>
 )
 }
