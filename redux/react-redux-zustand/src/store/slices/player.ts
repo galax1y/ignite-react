@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const playerSlice = createSlice({
   name: 'player',
@@ -44,13 +44,33 @@ const playerSlice = createSlice({
   },
 
   reducers: {
-    play: (state, action) => {
+    play: (state, action: PayloadAction<[number, number]>) => {
       state.currentModuleIndex = action.payload[0]
       state.currentLessonIndex = action.payload[1]
-    }
+    },
+    next: (state) => {
+      const nextLessonIndex = state.currentLessonIndex + 1
+      const nextLesson = state.course.modules[state.currentModuleIndex].lessons[nextLessonIndex]
+
+      // Lógica para o autoplay
+      // Se existe proxima aula no módulo atual, passa para essa aula
+      // Se for a última aula do módulo, passa para a primeira aula do próximo módulo caso ele exista
+      // Se o próximo módulo não existir, não faz nada
+      if (nextLesson) {
+        state.currentLessonIndex = nextLessonIndex
+      } else {
+        const nextModuleIndex = state.currentModuleIndex + 1
+        const nextModule = state.course.modules[nextModuleIndex]
+
+        if (nextModule) {
+          state.currentModuleIndex = nextModuleIndex
+          state.currentLessonIndex = 0
+        }
+      }
+    },
   },
 })
 
 export const player = playerSlice.reducer
 
-export const { play } = playerSlice.actions
+export const { play, next } = playerSlice.actions
