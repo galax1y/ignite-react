@@ -1,10 +1,12 @@
-import { MessageCircle } from 'lucide-react'
-import { Header } from '../components/Header'
-import { Video } from '../components/Video'
-import { Module } from '../components/Module'
+import { useEffect } from 'react'
 import { useAppSelector } from '../store'
 import { useCurrentLesson } from '../store/slices/player'
-import { useEffect } from 'react'
+
+import { Video } from '../components/Video'
+import { Header } from '../components/Header'
+import { Module } from '../components/Module'
+
+import { MessageCircle } from 'lucide-react'
 
 export function Player() {
   const modules = useAppSelector(state => { return state.player.course.modules })
