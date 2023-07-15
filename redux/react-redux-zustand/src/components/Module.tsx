@@ -52,7 +52,8 @@ export function Module({ title, lessonsAmount, moduleIndex }: ModuleProps) {
                 onPlay={() => dispatch(play([moduleIndex, lessonIndex]))}
                 isCurrent={isCurrent}
               />
-          )})}
+            )
+          })}
         </nav>
       </Collapsible.Content>
     </Collapsible.Root>
