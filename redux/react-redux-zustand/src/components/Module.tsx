@@ -21,7 +21,7 @@ export function Module({ title, lessonsAmount, moduleIndex }: ModuleProps) {
   })
 
   const lessons = useAppSelector((state) => {
-    return state.player.course.modules[moduleIndex].lessons
+    return state.player.course?.modules[moduleIndex].lessons
   })
 
   return (
@@ -41,7 +41,7 @@ export function Module({ title, lessonsAmount, moduleIndex }: ModuleProps) {
 
       <Collapsible.Content>
         <nav className='relative flex flex-col gap-4 p-6'>
-          {lessons.map((lesson, lessonIndex) => {
+          {lessons && lessons.map((lesson, lessonIndex) => {
             const isCurrent = currentModuleIndex === moduleIndex && currentLessonIndex === lessonIndex
             
             return (

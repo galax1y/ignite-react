@@ -1,57 +1,45 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { useAppSelector } from '..'
 
+interface Course {
+  id: number
+  modules: {
+    id: number
+    title: string
+    lessons: {
+      id: string
+      title: string
+      duration: string
+    }[]
+  }[]
+}
+
+export interface PlayerState {
+  course: Course | null,
+  currentModuleIndex: number,
+  currentLessonIndex: number,
+}
+
+const initialState: PlayerState = {
+  course: null,
+  currentModuleIndex: 0,
+  currentLessonIndex: 0,
+}
+
 export const playerSlice = createSlice({
   name: 'player',
-  initialState: {
-    course: {
-      modules: [
-        {
-          id: '1',
-          title: 'Iniciando com React',
-          lessons: [
-            {
-              id: 'd6ie3PEmAr4',
-              title: 'Bagel 1',
-              duration: '02:43',
-            },
-            {
-              id: 'tLfrU7ooi7s',
-              title: 'Marinaul',
-              duration: '30:01',
-            }
-          ]
-        },
-        {
-          id: '2',
-          title: 'Terminando com React',
-          lessons: [
-            {
-              id: 'd6ie3PEmAr4',
-              title: 'Bagel 3',
-              duration: '02:43',
-            },
-            {
-              id: 'tLfrU7ooi7s',
-              title: 'Marinaul',
-              duration: '30:01',
-            }
-          ]
-        }
-      ],
-    },
-    currentModuleIndex: 0,
-    currentLessonIndex: 0,
-  },
-
+  initialState,
   reducers: {
+    start: (state, action: PayloadAction<Course>) => {
+      state.course = action.payload
+    },
     play: (state, action: PayloadAction<[number, number]>) => {
       state.currentModuleIndex = action.payload[0]
       state.currentLessonIndex = action.payload[1]
     },
     next: (state) => {
       const nextLessonIndex = state.currentLessonIndex + 1
-      const nextLesson = state.course.modules[state.currentModuleIndex].lessons[nextLessonIndex]
+      const nextLesson = state.course?.modules[state.currentModuleIndex].lessons[nextLessonIndex]
 
       // Lógica para o autoplay
       // Se existe proxima aula no módulo atual, passa para essa aula
@@ -61,7 +49,7 @@ export const playerSlice = createSlice({
         state.currentLessonIndex = nextLessonIndex
       } else {
         const nextModuleIndex = state.currentModuleIndex + 1
-        const nextModule = state.course.modules[nextModuleIndex]
+        const nextModule = state.course?.modules[nextModuleIndex]
 
         if (nextModule) {
           state.currentModuleIndex = nextModuleIndex
@@ -76,8 +64,8 @@ export const useCurrentLesson = () => {
   return useAppSelector(state => {
     const { currentModuleIndex, currentLessonIndex } = state.player
 
-    const currentModule = state.player.course.modules[currentModuleIndex]
-    const currentLesson = state.player.course.modules[currentModuleIndex].lessons[currentLessonIndex]
+    const currentModule = state.player.course?.modules[currentModuleIndex]
+    const currentLesson = state.player.course?.modules[currentModuleIndex].lessons[currentLessonIndex]
 
     return { currentModule, currentLesson }
   })
@@ -85,4 +73,4 @@ export const useCurrentLesson = () => {
 
 export const player = playerSlice.reducer
 
-export const { play, next } = playerSlice.actions
+export const { play, start, next } = playerSlice.actions
