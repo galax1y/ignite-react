@@ -1,4 +1,5 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { api } from '../../lib/axios'
 import { useAppSelector } from '..'
 
 interface Course {
@@ -26,13 +27,19 @@ const initialState: PlayerState = {
   currentLessonIndex: 0,
 }
 
+export const loadCourse = createAsyncThunk(
+  'player/load',
+  async () => {
+    const response = await api.get('/courses/1')
+    
+    return response.data
+  }
+)
+
 export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    start: (state, action: PayloadAction<Course>) => {
-      state.course = action.payload
-    },
     play: (state, action: PayloadAction<[number, number]>) => {
       state.currentModuleIndex = action.payload[0]
       state.currentLessonIndex = action.payload[1]
@@ -58,6 +65,11 @@ export const playerSlice = createSlice({
       }
     },
   },
+  extraReducers(builder) {
+    builder.addCase(loadCourse.fulfilled, (state, action) => {
+      state.course = action.payload
+    })
+  },
 })
 
 export const useCurrentLesson = () => {
@@ -73,4 +85,4 @@ export const useCurrentLesson = () => {
 
 export const player = playerSlice.reducer
 
-export const { play, start, next } = playerSlice.actions
+export const { play, next } = playerSlice.actions
