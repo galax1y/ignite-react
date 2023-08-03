@@ -11,7 +11,8 @@ module.exports = {
         galax1y: '#3473FB'
       },
       gridTemplateColumns: {
-        app: 'minmax(18rem, 20rem) 1fr'
+        app: 'minmax(18rem, 20rem) 1fr',
+        profile: 'max-content 1fr min-content'
       },
     },
   },
