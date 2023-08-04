@@ -1,6 +1,7 @@
 'use client'
 
 import * as RadixTabs from '@radix-ui/react-tabs'
+import { motion } from 'framer-motion'
 
 interface TabItemProps {
   value: string
@@ -17,7 +18,10 @@ export function TabItem({ value, title, isSelected = false }: TabItemProps) {
       <span className="whitespace-nowrap">{title}</span>
 
       {isSelected && (
-        <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-violet-700" />
+        <motion.div
+          layoutId="activeTab"
+          className="absolute -bottom-px left-0 right-0 h-0.5 bg-violet-700"
+        />
       )}
     </RadixTabs.Trigger>
   )
