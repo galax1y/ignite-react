@@ -8,7 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        galax1y: '#3473FB'
+        galax1y: '#3473FB',
+
+        violet: {
+          25: '#fcfaff',
+        },
+      },
+      borderWidth: {
+        6: '6px',
       },
       gridTemplateColumns: {
         app: 'minmax(18rem, 20rem) 1fr',
