@@ -1,12 +1,30 @@
 'use client'
 
-import { ComponentProps } from 'react'
+import { ChangeEvent, ComponentProps } from 'react'
 import { useFileInput } from './root'
 
 type ControlProps = ComponentProps<'input'>
 
 export function Control(props: ControlProps) {
-  const { id } = useFileInput()
+  const { id, onFilesSelected } = useFileInput()
 
-  return <input id={id} type="file" className="sr-only" {...props} />
+  function handleFilesSelected(event: ChangeEvent<HTMLInputElement>) {
+    if (!event.target.files?.length) {
+      return
+    }
+
+    const files = Array.from(event.target.files)
+
+    onFilesSelected(files)
+  }
+
+  return (
+    <input
+      id={id}
+      type="file"
+      className="sr-only"
+      onChange={handleFilesSelected}
+      {...props}
+    />
+  )
 }
