@@ -148,6 +148,7 @@ export default function Home() {
             </label>
             <FileInput.Root className="items-start gap-5">
               <FileInput.Trigger />
+              <FileInput.FileList />
               <FileInput.Control multiple />
             </FileInput.Root>
           </div>
