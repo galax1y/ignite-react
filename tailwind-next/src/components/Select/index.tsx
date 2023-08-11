@@ -6,14 +6,14 @@ import * as SelectPrimitive from '@radix-ui/react-select'
 
 import { ChevronDown } from 'lucide-react'
 
-interface SelectProps {
+interface SelectProps extends SelectPrimitive.SelectProps {
   children: ReactNode
   placeholder: string
 }
 
-export function Select({ children, placeholder }: SelectProps) {
+export function Select({ children, placeholder, ...props }: SelectProps) {
   return (
-    <SelectPrimitive.Root>
+    <SelectPrimitive.Root {...props}>
       <SelectPrimitive.Trigger className="flex h-11 w-full items-center justify-between gap-2 rounded-lg border border-zinc-300 px-3 py-2 shadow-sm data-[placeholder]:text-zinc-600">
         <SelectPrimitive.Value
           placeholder={placeholder}
@@ -29,7 +29,7 @@ export function Select({ children, placeholder }: SelectProps) {
           side="bottom"
           sideOffset={8}
           position="popper"
-          className="z-10 w-[--radix-select-trigger-width] rounded-lg border border-zinc-200 bg-white"
+          className="z-10 w-[--radix-select-trigger-width] rounded-lg border border-zinc-200 bg-white shadow-sm"
         >
           <SelectPrimitive.Viewport className="outline-none">
             {children}
