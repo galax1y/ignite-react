@@ -1,8 +1,9 @@
+import Tabs from '@/components/Tabs'
 import * as Input from '@/components/input'
 import * as FileInput from '@/components/FileInput'
 
-import { Mail } from 'lucide-react'
-import Tabs from '@/components/Tabs'
+import { ChevronDown, Mail } from 'lucide-react'
+import { Select } from '@/components/select'
 
 export default function Home() {
   return (
@@ -116,7 +117,7 @@ export default function Home() {
             >
               Country
             </label>
-            <div></div>
+            <Select />
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
