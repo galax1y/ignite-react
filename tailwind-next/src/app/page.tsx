@@ -1,9 +1,10 @@
 import Tabs from '@/components/Tabs'
+import { Select } from '@/components/Select'
+import { SelectItem } from '@/components/Select/SelectItem'
 import * as Input from '@/components/input'
 import * as FileInput from '@/components/FileInput'
 
-import { ChevronDown, Mail } from 'lucide-react'
-import { Select } from '@/components/select'
+import { Mail } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -117,7 +118,10 @@ export default function Home() {
             >
               Country
             </label>
-            <Select />
+            <Select placeholder="Select a country">
+              <SelectItem text="Brazil" value="br" />
+              <SelectItem text="Spain" value="es" />
+            </Select>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -127,7 +131,13 @@ export default function Home() {
             >
               Timezone
             </label>
-            <div></div>
+            <Select placeholder="Select a timezone">
+              <SelectItem
+                text="Pacific Standard Time (UTC-08:00)"
+                value="utc8"
+              />
+              <SelectItem text="America São Paulo (UTC-03:00)" value="utc3" />
+            </Select>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
