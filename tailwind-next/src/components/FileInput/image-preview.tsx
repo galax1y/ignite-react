@@ -18,12 +18,13 @@ export function ImagePreview() {
 
   if (previewURL === null) {
     return (
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-violet-50">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-violet-50 dark:bg-violet-500/10 dark:text-violet-300">
         <User className="h-8 w-8 text-violet-500" />
       </div>
     )
   } else {
     return (
+      // eslint-disable-next-line
       <img
         src={previewURL}
         alt=""
